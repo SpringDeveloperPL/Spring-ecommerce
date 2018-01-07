@@ -1,25 +1,18 @@
 package com.ecommerce.product.dao;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import com.ecommerce.category.domain.ProductCategory;
+import com.ecommerce.product.doimain.Color;
+import com.ecommerce.product.doimain.Manufacturer;
+import com.ecommerce.product.doimain.Product;
+import com.ecommerce.product.doimain.ProductImage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ecommerce.category.domain.ProductCategory;
-import com.ecommerce.product.doimain.Color;
-import com.ecommerce.product.doimain.Manufacturer;
-import com.ecommerce.product.doimain.Product;
-import com.ecommerce.product.doimain.ProductImage;
-import com.ecommerce.product.doimain.Tax;
-import com.ecommerce.tax.service.TaxService;
-
-import javafx.scene.control.Tab;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @Transactional
