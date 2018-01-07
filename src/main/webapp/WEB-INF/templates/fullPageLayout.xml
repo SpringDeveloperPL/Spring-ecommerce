@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="fullPageLayout"
+		template="/WEB-INF/templates/layouts/fullPageLayout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/layouts/header.jsp" />
+		<put-attribute name="customHeader" value="" />
+		<put-attribute name="title" value="" />
+		<put-attribute name="navbar"
+			value="/WEB-INF/templates/layouts/navbar.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/templates/layouts/menu.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/templates/layouts/footer.jsp" />
+		<put-attribute name="footerScripts"
+			value="/WEB-INF/templates/layouts/footerScripts.jsp" />
+	</definition>
+
+	<definition name="welcome" extends="fullPageLayout">
+		<put-attribute name="title" value="Online Store" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/home/content.jsp" />
+	</definition>
+
+	<definition name="registration" extends="fullPageLayout">
+		<put-attribute name="title" value="Registration" />
+		<put-attribute name="menu" value="" />
+
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/registration/registrationForm.jsp" />
+	</definition>
+
+	<definition name="sign-in" extends="fullPageLayout">
+		<put-attribute name="title" value="Sign In" />
+		<put-attribute name="menu" value="" />
+
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/signIn/SignIn.jsp" />
+	</definition>
+
+	<definition name="customer-account" extends="fullPageLayout">
+		<put-attribute name="title" value="Controll Panel" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/customerAccount/panel.jsp" />
+		<put-attribute name="footerScripts" value="" />
+	</definition>
+
+	<definition name="logout" extends="fullPageLayout">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/layouts/header.jsp" />
+		<put-attribute name="customHeader" value="" />
+		<put-attribute name="title" value="Logout" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/admin/logout.jsp" />
+		<put-attribute name="footer" value="" />
+		<put-attribute name="footerScripts" value="" />
+	</definition>
+
+	<definition name="customer-logout" extends="fullPageLayout">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/layouts/header.jsp" />
+		<put-attribute name="customHeader" value="" />
+		<put-attribute name="title" value="Logout" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views//logout.jsp" />
+		<put-attribute name="footer" value="" />
+		<put-attribute name="footerScripts" value="" />
+	</definition>
+
+	<definition name="admlogin" extends="fullPageLayout">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/layouts/header.jsp" />
+		<put-attribute name="customHeader" value="" />
+		<put-attribute name="title" value="Admin Panel" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/admin/admlogin.jsp" />
+		<put-attribute name="footer" value="" />
+		<put-attribute name="footerScripts" value="" />
+	</definition>
+
+
+	<definition name="booksSearch" extends="fullPageLayout">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/layouts/header.jsp" />
+		<put-attribute name="customHeader"
+			value="/WEB-INF/templates/views/tests/header.jsp" />
+		<put-attribute name="title" value="Logout" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/tests/booksSearch.jsp" />
+		<put-attribute name="footer" value="" />
+		<put-attribute name="footerScripts" value="" />
+	</definition>
+
+	<definition name="menu" extends="fullPageLayout">
+		<put-attribute name="header" value="" />
+		<put-attribute name="customHeader"
+			value="/WEB-INF/templates/views/tests/menu/header.jsp" />
+		<put-attribute name="title" value="Logout" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="content"
+			value="/WEB-INF//templates/views/tests/menu/index.jsp" />
+		<put-attribute name="footer" value="" />
+		<put-attribute name="footerScripts" value="" />
+	</definition>
+
+	<definition name="category" extends="fullPageLayout">
+		<put-attribute name="title" value="Category" />
+
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/catalog/category.jsp" />
+	</definition>
+
+	<definition name="product" extends="fullPageLayout">
+		<put-attribute name="title" value="Category" />
+
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/catalog/product.jsp" />
+	</definition>
+
+	<definition name="error404" extends="fullPageLayout">
+		<put-attribute name="title" value="Error 404 Page not Found" />
+
+		<put-attribute name="content"
+					   value="WEB-INF/templates/views/errors/error404.jsp" />
+	</definition>
+
+</tiles-definitions>

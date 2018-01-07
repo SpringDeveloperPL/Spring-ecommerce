@@ -1,0 +1,34 @@
+
+	<http auto-config='true' use-expressions="true">
+		<intercept-url pattern="/dishboard/**" access="isAuthenticated()" />
+		<intercept-url pattern="/customer-account/**" access="isAuthenticated()" />
+		<form-login login-page="/admlogin" default-target-url="/dishboard"
+			authentication-failure-url="/loginfailed" />
+		<logout logout-url="/logout" logout-success-url="/admin" />
+		<access-denied-handler error-page="/logout" />
+	</http>
+
+
+	<beans:bean id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="userDetailsService"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="authenticationManager"
+		class="org.springframework.security.authentication.ProviderManager">
+		<beans:property name="providers">
+			<beans:list>
+				<beans:ref local="daoAuthenticationProvider" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder ref="encoder" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+

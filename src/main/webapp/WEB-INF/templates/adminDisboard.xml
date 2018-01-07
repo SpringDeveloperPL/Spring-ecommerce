@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+
+	<definition name="adminDisboard"
+		template="/WEB-INF/templates/layouts/admin/fullPageLayout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/templates/layouts/admin/header.jsp" />
+		<put-attribute name="customHeader" value="" />
+		<put-attribute name="title" value="" />
+		<put-attribute name="topmenu"
+			value="/WEB-INF/templates/layouts/admin/topmenu.jsp" />
+		<put-attribute name="sidebar"
+			value="/WEB-INF/templates/layouts/admin/sidebar.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/templates/layouts/admin/footer.jsp" />
+			<put-attribute name="footerScripts" value="/WEB-INF/templates/layouts/admin/footerScripts.jsp" />
+	</definition>
+
+
+
+	<definition name="dashboard" extends="adminDisboard">
+		<put-attribute name="title" value="Admin Disboard" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/layouts/admin/content.jsp" />
+	</definition>
+
+
+	<definition name="managecategory" extends="adminDisboard">
+		<put-attribute name="title" value="Manage Category" />
+		<put-attribute name="customHeader"
+			value="/WEB-INF/templates/views/admin/catalog/manageCategory/customHeader.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/admin/catalog/manageCategory/content.jsp" />
+	</definition>
+
+	
+	
+	<definition name="manageproduct" extends="adminDisboard">
+		<put-attribute name="title" value="Manage Product" />
+		<put-attribute name="customHeader"
+			value="/WEB-INF/templates/views/admin/catalog/manageProduct/customHeader.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/admin/catalog/manageProduct/content.jsp" />
+	</definition>
+	
+	<definition name="addProduct" extends="adminDisboard">
+		<put-attribute name="title" value="Add New Product" />
+		<put-attribute name="customHeader"
+			value="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/customHeader.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/content.jsp" />
+	</definition>
+
+	<definition name="manage-manufacturers" extends="adminDisboard">
+		<put-attribute name="title" value="Manage Manufacturers" />
+		<put-attribute name="customHeader"
+					   value="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/customHeader.jsp" />
+		<put-attribute name="content"
+					   value="/WEB-INF/templates/views/admin/system-settings/manufacturers/manufacturer.jsp" />
+	</definition>
+
+
+</tiles-definitions>
