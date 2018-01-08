@@ -1,9 +1,7 @@
 package com.ecommerce.category.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.ecommerce.customer.domain.Role;
+import com.ecommerce.category.domain.Category;
+import com.ecommerce.category.domain.ProductCategory;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ecommerce.category.domain.Category;
-import com.ecommerce.category.domain.ProductCategory;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @Transactional
