@@ -19,7 +19,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="auctionObserver")
+@Table(name="auctionobserver")
 public class AuctionObserver implements Serializable {
 	public AuctionObserver() {
 	}

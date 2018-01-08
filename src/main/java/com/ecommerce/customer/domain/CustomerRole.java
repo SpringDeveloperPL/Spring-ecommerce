@@ -19,7 +19,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="CustomerRole")
+@Table(name="customerrole")
 public class CustomerRole implements Serializable {
 	public CustomerRole() {
 	}

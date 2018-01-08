@@ -131,7 +131,7 @@
 			<version>1.2.2</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-io</groupId>
+			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>1.3.2</version>
 		</dependency>
@@ -139,6 +139,26 @@
 
 
 	</dependencies>
+
+	 <!--LOCAL BUILD-->
+<!--
+
+	 <build>
+		 <plugins>
+			 <plugin>
+				 <groupId>org.apache.tomcat.maven</groupId>
+				 <artifactId>tomcat7-maven-plugin</artifactId>
+				 <version>2.2</version>
+				 <configuration>
+					 <path>/</path>
+					 <contextFile>src/main/webapp/WEB-INF/config/app-config.xml</contextFile>
+					 <mode>context</mode>
+					 <charset>UTF-8</charset>
+					 <warDirectory>target/${project.artifactId}-${project.version}</warDirectory>
+				 </configuration>
+			 </plugin>
+		 </plugins>
+	 </build>-->
 
 	 <build>
 		 <plugins>
@@ -167,8 +187,6 @@
 
 
 	 </build>
-
-
 
 
 </project>
