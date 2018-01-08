@@ -1,8 +1,7 @@
 package com.ecommerce.tests.menu;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface JsonTreeService {
 

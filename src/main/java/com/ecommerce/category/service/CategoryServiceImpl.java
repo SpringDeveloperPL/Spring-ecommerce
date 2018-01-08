@@ -1,25 +1,16 @@
 package com.ecommerce.category.service;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.ecommerce.category.dao.CategoryDao;
+import com.ecommerce.category.domain.*;
+import com.ecommerce.product.dao.ProductDao;
+import com.ecommerce.product.doimain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.category.dao.CategoryDao;
-import com.ecommerce.category.domain.Category;
-import com.ecommerce.category.domain.ClientHttpRequest;
-import com.ecommerce.category.domain.Factor;
-import com.ecommerce.category.domain.JsonResponse;
-import com.ecommerce.category.domain.Status;
-import com.ecommerce.product.dao.ProductDao;
-import com.ecommerce.product.doimain.Product;
-import com.ecommerce.category.domain.ProductCategory;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {

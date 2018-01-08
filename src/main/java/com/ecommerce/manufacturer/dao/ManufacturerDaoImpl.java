@@ -1,14 +1,13 @@
 package com.ecommerce.manufacturer.dao;
 
-import java.util.List;
-
+import com.ecommerce.product.doimain.Manufacturer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ecommerce.product.doimain.Manufacturer;
+import java.util.List;
 
 @Repository
 @Transactional

@@ -1,9 +1,9 @@
 package com.ecommerce.customer.service;
 
-import java.util.List;
-
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.domain.CustomerRole;
+
+import java.util.List;
 
 public interface CustomerService {
 

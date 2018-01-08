@@ -1,19 +1,16 @@
 package com.ecommerce.customer.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import org.springframework.transaction.annotation.Transactional;
-
 import com.ecommerce.customer.dao.CustomerDao;
 import com.ecommerce.customer.dao.RoleDao;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.domain.CustomerRole;
 import com.ecommerce.customer.domain.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @Service

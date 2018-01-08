@@ -1,6 +1,5 @@
 package com.ecommerce.initializator;
-import com.ecommerce.product.doimain.Tax;
-import java.util.List;
+
 public interface InitializatorService {
 
     /**

@@ -1,15 +1,10 @@
 package com.ecommerce.category.service;
 
-import java.util.List;
+import com.ecommerce.category.domain.*;
+import com.ecommerce.product.doimain.Product;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.ecommerce.category.domain.Category;
-import com.ecommerce.category.domain.ClientHttpRequest;
-import com.ecommerce.category.domain.Factor;
-import com.ecommerce.category.domain.JsonResponse;
-import com.ecommerce.category.domain.ProductCategory;
-import com.ecommerce.product.doimain.Product;
+import java.util.List;
 
 
 public interface CategoryService {

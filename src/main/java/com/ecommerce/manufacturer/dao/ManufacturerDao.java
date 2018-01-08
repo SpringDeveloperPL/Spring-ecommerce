@@ -1,9 +1,8 @@
 package com.ecommerce.manufacturer.dao;
 
-import java.util.List;
-
 import com.ecommerce.product.doimain.Manufacturer;
-import com.ecommerce.product.doimain.Tax;
+
+import java.util.List;
 
 public interface ManufacturerDao {
 

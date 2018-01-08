@@ -1,7 +1,6 @@
 package com.ecommerce.auction.controller;
 
 import com.ecommerce.auction.domain.AuctionBidd;
-import com.ecommerce.auction.domain.AuctionFormData;
 import com.ecommerce.auction.service.AuctionService;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.service.CustomerService;

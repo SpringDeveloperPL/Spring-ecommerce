@@ -1,12 +1,11 @@
 package com.ecommerce.product.service;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.ecommerce.product.doimain.Color;
 import com.ecommerce.product.doimain.Manufacturer;
 import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.doimain.ProductImage;
+
+import java.util.List;
 
 
 public interface ProductService {

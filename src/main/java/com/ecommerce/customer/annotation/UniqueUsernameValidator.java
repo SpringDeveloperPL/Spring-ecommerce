@@ -1,12 +1,10 @@
 package com.ecommerce.customer.annotation;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
+import com.ecommerce.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ecommerce.customer.service.CustomerService;
-import com.ecommerce.customer.service.CustomerServiceImpl;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
 

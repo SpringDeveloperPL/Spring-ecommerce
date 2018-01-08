@@ -1,7 +1,5 @@
 package com.ecommerce.customer.dao;
 
-import java.util.List;
-
 import com.ecommerce.customer.domain.Customer;
 
 public interface CustomerDao {

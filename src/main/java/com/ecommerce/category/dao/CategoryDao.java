@@ -1,9 +1,9 @@
 package com.ecommerce.category.dao;
 
-import java.util.List;
-
 import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.ProductCategory;
+
+import java.util.List;
 
 
 public interface CategoryDao {

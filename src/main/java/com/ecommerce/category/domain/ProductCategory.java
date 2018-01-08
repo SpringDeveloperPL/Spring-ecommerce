@@ -13,10 +13,10 @@
  */
 package com.ecommerce.category.domain;
 
-import java.io.Serializable;
-import javax.persistence.*;
-
 import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @Proxy(lazy = false)
 @Table(name="ProductCategory")

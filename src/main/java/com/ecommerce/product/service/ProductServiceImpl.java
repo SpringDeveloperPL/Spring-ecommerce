@@ -1,20 +1,16 @@
 package com.ecommerce.product.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ecommerce.product.dao.ProductDao;
 import com.ecommerce.product.doimain.Color;
 import com.ecommerce.product.doimain.Manufacturer;
 import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.doimain.ProductImage;
-import com.ecommerce.product.doimain.Tax;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {

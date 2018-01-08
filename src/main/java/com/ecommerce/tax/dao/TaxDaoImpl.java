@@ -1,8 +1,6 @@
 package com.ecommerce.tax.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.ecommerce.product.doimain.Tax;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ecommerce.category.domain.Category;
-import com.ecommerce.product.doimain.Tax;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @Transactional

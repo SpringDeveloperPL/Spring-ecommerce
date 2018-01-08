@@ -13,8 +13,8 @@
  */
 package com.ecommerce.customer.domain;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=true)
 @Table(name="CustomerAdress")

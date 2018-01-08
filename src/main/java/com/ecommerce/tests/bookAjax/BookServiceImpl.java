@@ -1,9 +1,9 @@
 package com.ecommerce.tests.bookAjax;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class BookServiceImpl implements BookService{

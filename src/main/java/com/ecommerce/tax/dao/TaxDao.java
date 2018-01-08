@@ -1,8 +1,8 @@
 package com.ecommerce.tax.dao;
 
-import java.util.List;
-
 import com.ecommerce.product.doimain.Tax;
+
+import java.util.List;
 
 public interface TaxDao {
 

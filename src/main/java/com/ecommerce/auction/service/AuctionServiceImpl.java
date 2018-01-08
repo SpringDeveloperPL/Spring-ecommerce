@@ -1,12 +1,10 @@
 package com.ecommerce.auction.service;
 
 import com.ecommerce.auction.dao.AuctionDao;
-import com.ecommerce.auction.dao.AuctionDaoImpl;
 import com.ecommerce.auction.domain.AuctionBidd;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

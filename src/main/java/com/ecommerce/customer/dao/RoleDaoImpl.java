@@ -1,18 +1,18 @@
 package com.ecommerce.customer.dao;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.hibernate.*;
+import com.ecommerce.customer.domain.Customer;
+import com.ecommerce.customer.domain.CustomerRole;
+import com.ecommerce.customer.domain.Role;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ecommerce.customer.domain.Customer;
-import com.ecommerce.customer.domain.CustomerRole;
-import com.ecommerce.customer.domain.Role;
+import java.util.List;
 
 @Repository
 @Transactional

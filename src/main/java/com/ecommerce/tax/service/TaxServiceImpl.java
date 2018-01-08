@@ -1,13 +1,12 @@
 package com.ecommerce.tax.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.ecommerce.product.doimain.Tax;
+import com.ecommerce.tax.dao.TaxDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.product.doimain.Tax;
-import com.ecommerce.tax.dao.TaxDao;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TaxServiceImpl implements TaxService {

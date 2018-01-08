@@ -1,13 +1,8 @@
 package com.ecommerce.customer.domain.forms;
 
-import java.io.Serializable;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.ecommerce.customer.domain.Customer;
+
+import javax.validation.constraints.Size;
 
 public class RegisterCustomerForm {
 

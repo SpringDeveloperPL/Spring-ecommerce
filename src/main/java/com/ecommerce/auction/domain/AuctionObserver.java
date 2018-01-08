@@ -11,11 +11,12 @@ package com.ecommerce.auction.domain; /**
  * Licensee: 
  * License Type: Evaluation
  */
+
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="auctionObserver")

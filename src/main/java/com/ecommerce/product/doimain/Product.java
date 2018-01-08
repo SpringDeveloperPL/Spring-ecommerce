@@ -11,6 +11,7 @@ package com.ecommerce.product.doimain; /**
  * Licensee: 
  * License Type: Evaluation
  */
+
 import com.ecommerce.auction.domain.AuctionBidd;
 import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.domain.AuctionObserver;
@@ -18,8 +19,8 @@ import com.ecommerce.category.domain.ProductCategory;
 import com.ecommerce.customer.domain.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="product")

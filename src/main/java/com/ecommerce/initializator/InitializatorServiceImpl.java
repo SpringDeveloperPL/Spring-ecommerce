@@ -102,7 +102,7 @@ public class InitializatorServiceImpl implements InitializatorService{
     }
 
     @Override
-    @PostConstruct
+//    @PostConstruct
     public void initializeDatabase() {
         if(IS_INITIALIZED_DATABASE_VALUES==false) {
             initializeCustomerRole();

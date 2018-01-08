@@ -1,39 +1,27 @@
 package com.ecommerce.product.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.ecommerce.auction.service.AuctionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.ProductCategory;
 import com.ecommerce.category.service.CategoryService;
 import com.ecommerce.manufacturer.service.ManufacturerService;
-import com.ecommerce.product.doimain.FileMeta;
-import com.ecommerce.product.doimain.Manufacturer;
-import com.ecommerce.product.doimain.Product;
-import com.ecommerce.product.doimain.ProductForm;
-import com.ecommerce.product.doimain.ProductImage;
-import com.ecommerce.product.doimain.Tax;
+import com.ecommerce.product.doimain.*;
 import com.ecommerce.product.service.ProductService;
 import com.ecommerce.tax.service.TaxService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.*;
 
 /**
  * @author Brove

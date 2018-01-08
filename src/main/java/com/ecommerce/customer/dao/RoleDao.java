@@ -1,11 +1,10 @@
 package com.ecommerce.customer.dao;
 
-import java.util.List;
-import java.util.Set;
-
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.domain.CustomerRole;
 import com.ecommerce.customer.domain.Role;
+
+import java.util.List;
 
 public interface RoleDao {
 	

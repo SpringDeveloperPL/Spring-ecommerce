@@ -19,20 +19,17 @@
  */
 package com.ecommerce.customer.controller.validator;
 
+import com.ecommerce.customer.domain.Customer;
+import com.ecommerce.customer.domain.forms.RegisterCustomerForm;
+import com.ecommerce.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.ecommerce.customer.domain.Customer;
-import com.ecommerce.customer.domain.forms.RegisterCustomerForm;
-import com.ecommerce.customer.service.CustomerService;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.annotation.Resource;
 
 /**
  * @author bpolster

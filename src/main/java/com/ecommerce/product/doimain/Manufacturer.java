@@ -11,8 +11,9 @@ package com.ecommerce.product.doimain; /**
  * Licensee: 
  * License Type: Evaluation
  */
-import java.io.Serializable;
+
 import javax.persistence.*;
+import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="manufacturer")
