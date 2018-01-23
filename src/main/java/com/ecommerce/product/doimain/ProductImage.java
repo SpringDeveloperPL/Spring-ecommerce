@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="productimage")
+@Table(name="PRODUCT_IMAGE")
 public class ProductImage implements Serializable {
 	public ProductImage() {
 	}

@@ -1,6 +1,7 @@
 package com.ecommerce.auction.dao;
 
 import com.ecommerce.auction.domain.AuctionBidd;
+import com.ecommerce.auction.domain.AuctionObserver;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
 import org.hibernate.Session;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -25,13 +27,24 @@ public class AuctionDaoImpl implements AuctionDao {
 
     public void productBidd(Product product, Customer customer, BigDecimal biddPrice, Timestamp biddDate) {
 
-
     }
 
     @Override
     public void productBidd(AuctionBidd auctionBidd) {
         Session session = getCurrentSesion();
         session.save(auctionBidd);
+    }
+
+    @Override
+    public void registerAuctionObserver(AuctionObserver auctionObserver) {
+        Session session = getCurrentSesion();
+        session.save(auctionObserver);
+    }
+
+    @Override
+    public List<AuctionObserver> findAllAuctionObservers() {
+        Session session = getCurrentSesion();
+        return session.createCriteria(AuctionObserver.class).list();
     }
 
 

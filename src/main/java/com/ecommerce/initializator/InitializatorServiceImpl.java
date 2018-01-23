@@ -66,6 +66,7 @@ public class InitializatorServiceImpl implements InitializatorService{
     @Override
     public void initializeCategorys() {
         String homeCategory = "Home";
+        String electronics = "Electronics";
 
         List<String> categoryNamedList = new ArrayList<>();
         categoryNamedList.add(homeCategory);
@@ -102,7 +103,7 @@ public class InitializatorServiceImpl implements InitializatorService{
     }
 
     @Override
-    @PostConstruct
+//    @PostConstruct
     public void initializeDatabase() {
         if(IS_INITIALIZED_DATABASE_VALUES==false) {
             initializeCustomerRole();

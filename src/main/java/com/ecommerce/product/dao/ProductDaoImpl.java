@@ -5,6 +5,7 @@ import com.ecommerce.product.doimain.Color;
 import com.ecommerce.product.doimain.Manufacturer;
 import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.doimain.ProductImage;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 @Transactional
 public class ProductDaoImpl implements ProductDao {
-	
+
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -25,7 +26,7 @@ public class ProductDaoImpl implements ProductDao {
 		return sessionFactory.getCurrentSession();
 	}
 
-	
+
 	public void addProduct(Product product) {
 		Session session = getCurrentSession();
 		session.save(product);
@@ -39,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	public void addProductImage(List<ProductImage> imageList) {
 		Session session = getCurrentSession();
-		
+
 		for (ProductImage productImage : imageList) {
 			productImage.setName(productImage.getName());
 			session.save(productImage);
@@ -76,7 +77,6 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = getCurrentSession();
 		session.saveOrUpdate(product);
 	}
-
 
 
 

@@ -15,6 +15,20 @@ public interface CustomerService {
 	public void registerCustomer(Customer customer, String password, String passwordConfirm);
 	public Customer findCustomerByName(String username);
 	public CustomerRole readRoleByCustomerRoleiD(long customerRoleId);
-	public Boolean isDoubleEmail(String email);
+
+	/**
+	 * Check if pressed e-mail is used for any Cnustomer
+	 * @param email
+	 * @return
+	 */
+	public Boolean isEmailUsed(String email);
 	public List<CustomerRole> findAllCustomerRole();
+
+	/**
+	 * Find Customer by Email
+	 * @param email
+	 * @return
+	 */
+	public Customer getCustomerByEmail(String email);
+
 }

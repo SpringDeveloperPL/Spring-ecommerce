@@ -81,7 +81,7 @@
 				<form  method="POST"  action="">
 
 				<div class="col-md-7">
-				    <p> <strong>6 osób</strong> licytuje <strong></strong> </p>
+				    <p> <strong>${observerCount} osób</strong> licytuje <strong></strong> </p>
 				
 					<h3>${product.name}</h3>
 
@@ -96,6 +96,9 @@
 					<p></p>
 					<p>
 						<strong>Unit in Stack </strong>:${product.quantity}
+					</p>
+					<p>
+						<strong>Actual Price </strong>:${product.bidAmout}
 					</p>
 					<p>
 				</div>

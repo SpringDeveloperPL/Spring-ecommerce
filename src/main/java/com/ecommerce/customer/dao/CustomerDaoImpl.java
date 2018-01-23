@@ -21,6 +21,10 @@ public class CustomerDaoImpl implements CustomerDao {
 		return sessionFactory;
 	}
 
+	public Session getCurrentSession() {
+		return getSessionFactory().getCurrentSession();
+	}
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -55,26 +59,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		return customer;
 	}
 
-
 	@Override
-	public Boolean isDoubleMail(String adressEmail) {
-		Customer customer = null;	
-		Boolean flag=false;
-		Session session = this.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
-		
-		
-		String selectQuery = "FROM Customer where emailAdress= :usernameParam";
-		Query query = session.createQuery(selectQuery);
-		query.setParameter("usernameParam", adressEmail);
-		
-		if(!(query.list().isEmpty())) {
-			flag=true;
-		}else flag = false;
-		tx.commit();
-		session.close();
-		
-		return flag;
+	public Customer getCustomerByEmail(String email) {
+
+		Session session = getCurrentSession();
+		Criteria criteria = session.createCriteria(Customer.class);
+		criteria.add(Restrictions.eq("emailAdress",email));
+		Customer customer = (Customer) criteria.uniqueResult();
+		return customer;
 	}
 
 

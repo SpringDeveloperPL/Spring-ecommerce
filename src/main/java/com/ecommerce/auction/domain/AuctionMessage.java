@@ -19,7 +19,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="auctionmessage")
+@Table(name="AUCTION_MESSAGE")
 public class AuctionMessage implements Serializable {
 	public AuctionMessage() {
 	}

@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="categoryattribute")
+@Table(name="CATEGORY_ATTRIBUTE")
 public class CategoryAttribute implements Serializable {
 	public CategoryAttribute() {
 	}

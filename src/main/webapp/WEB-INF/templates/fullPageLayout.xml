@@ -113,7 +113,6 @@
 
 	<definition name="category" extends="fullPageLayout">
 		<put-attribute name="title" value="Category" />
-
 		<put-attribute name="content"
 			value="/WEB-INF/templates/views/catalog/category.jsp" />
 	</definition>

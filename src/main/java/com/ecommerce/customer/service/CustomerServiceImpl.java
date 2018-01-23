@@ -85,15 +85,24 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Boolean isDoubleEmail(String email) {
-		
-		Boolean isDoubledMain =customerDao.isDoubleMail(email);
-		return isDoubledMain;
+	public Boolean isEmailUsed(String email) {
+
+		if(customerDao.getCustomerByEmail(email)==null) {
+			return false;
+
+		}else return true;
 	}
+
 
 	@Override
 	public List<CustomerRole> findAllCustomerRole() {
 		return roleDao.findAllCustomerRole();
+	}
+
+	@Override
+	public Customer getCustomerByEmail(String email) {
+
+		return customerDao.getCustomerByEmail(email);
 	}
 
 }

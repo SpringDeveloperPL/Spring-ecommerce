@@ -10,8 +10,7 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/customer-account/**" access="hasAuthority('ROLE_CUSTOMER')" />
-		<!--<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" />		-->
-		<!--<intercept-url pattern="/dashboard/**" access="hasAuthority('ROLE_ADMIN')" />-->
+		<!--<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" />-->
 		<intercept-url pattern="/**" access="permitAll" />
 		<logout logout-url="/logout" logout-success-url="/sign-in" />
 		<form-login login-page="/sign-in" />

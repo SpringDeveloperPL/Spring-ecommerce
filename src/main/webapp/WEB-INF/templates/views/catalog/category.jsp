@@ -28,9 +28,6 @@
 						<p>
 							<strong> Bidders: </strong> 5 customer are bidding
 						</p>
-
-
-
 						<p>
 							<strong>Price </strong> ${product.price}USD
 						</p>

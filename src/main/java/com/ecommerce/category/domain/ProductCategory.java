@@ -19,7 +19,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @Proxy(lazy = false)
-@Table(name="ProductCategory")
+@Table(name="PRODUCT_CATEGORY")
 public class ProductCategory implements Serializable {
 	public ProductCategory() {
 	}

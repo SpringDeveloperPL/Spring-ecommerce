@@ -84,7 +84,7 @@ public class RegisterCustomerValidator implements Validator {
 			}
 		}
 		
-		if(customerService.isDoubleEmail(email)==true){
+		if(customerService.isEmailUsed(email)==true){
 			errors.rejectValue("customer.emailAdress", "Validator.customerForm..email.double");
 
 		}

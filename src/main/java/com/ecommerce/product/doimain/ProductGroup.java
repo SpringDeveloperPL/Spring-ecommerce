@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="productgroup")
+@Table(name="PRODUCT_GROUP")
 public class ProductGroup implements Serializable {
 	public ProductGroup() {
 	}

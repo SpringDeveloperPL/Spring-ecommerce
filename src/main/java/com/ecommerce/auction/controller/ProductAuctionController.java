@@ -55,6 +55,7 @@ public class ProductAuctionController {
         long countdownTimestamp = auctionService.getAuctionCountDownNanos(product.getAuctionEndDate());
         model.addAttribute("countdownTimestamp",countdownTimestamp);
         model.addAttribute("product",product);
+        model.addAttribute("observerCount",auctionService.getCountProductAuctionObserver(product));
         return "product";
 
     }

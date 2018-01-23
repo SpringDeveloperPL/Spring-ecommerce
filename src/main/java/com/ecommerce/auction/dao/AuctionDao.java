@@ -1,11 +1,13 @@
 package com.ecommerce.auction.dao;
 
 import com.ecommerce.auction.domain.AuctionBidd;
+import com.ecommerce.auction.domain.AuctionObserver;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface AuctionDao {
 
@@ -24,4 +26,15 @@ public interface AuctionDao {
      */
     public void productBidd(AuctionBidd auctionBidd);
 
+    /**
+     * Register auction observer DAO
+     * @param auctionObserver
+     */
+    void registerAuctionObserver(AuctionObserver auctionObserver);
+
+    /**
+     * Getting List of All Auction observers
+     * @return
+     */
+    List<AuctionObserver> findAllAuctionObservers();
 }

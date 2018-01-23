@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="color")
+@Table(name="COLOR")
 public class Color implements Serializable {
 	public Color() {
 	}

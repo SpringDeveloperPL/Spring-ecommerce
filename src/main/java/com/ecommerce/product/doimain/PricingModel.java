@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="pricingmodel")
+@Table(name="PRICING_MODEL")
 public class PricingModel implements Serializable {
 	public PricingModel() {
 	}

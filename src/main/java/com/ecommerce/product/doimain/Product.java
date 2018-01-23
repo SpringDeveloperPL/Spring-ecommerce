@@ -23,7 +23,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="product")
+@Table(name="PRODUCT")
 public class Product implements Serializable {
 	public Product() {
 	}

@@ -24,9 +24,9 @@ public interface ProductDao {
 
 	public Product getProductById(Integer producId);
 
-	/**Update Product bz Proruct Object
+	/**Update Product information
 	 * @param product
 	 */
 	public void updateProduct(Product product);
-		
+
 }

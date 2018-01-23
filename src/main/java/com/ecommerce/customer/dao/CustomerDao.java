@@ -7,5 +7,13 @@ public interface CustomerDao {
 	public Customer save(Customer customer);	
 	public Customer findCustomerById(int userId);
 	public Customer findCustomerByName(String username);
-	public Boolean isDoubleMail(String adressEmail);
+
+	/**
+	 * Find Customer by Email DAO
+	 * @param email
+	 * @return
+	 */
+    Customer getCustomerByEmail(String email);
+
+
 }

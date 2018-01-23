@@ -9,7 +9,7 @@
 
 
 <header id="fh5co-header" role="banner">
-					
+
 </div>
 Language:
 
@@ -22,7 +22,7 @@ Language:
 		<div class="container-fluid">
 
 			<div class="navbar-header">
-			
+
 
 				<!-- Mobile Toggle Menu Button -->
 				<a href="#"
@@ -42,7 +42,7 @@ Language:
 					<li><a href="left-sidebar.html"><span>Left Sidebar
 								<span class="border"></span>
 						</span></a></li>
-						
+
 						<sec:authorize access="hasRole('ROLE_CUSTOMER')">
 							<li><a href="/customer-account"><span> <span
 								class="glyphicon glyphicon-user"></span><sec:authentication property="name"/> <span
@@ -50,10 +50,10 @@ Language:
 					<li><a href="logout"><span> <span
 								class="glyphicon glyphicon-align-left"></span>
 								</button> Sign out <span class="border"></span></span></a></li>
-						
+
 						</sec:authorize>
 <sec:authorize access="isAnonymous() or hasRole('ROLE_ADMIN')">
-						
+
 					<li><a href="/customer-account"><span> <span
 								class="glyphicon glyphicon-user"></span> Sign In <span
 								class="border"></span></span></a></li>

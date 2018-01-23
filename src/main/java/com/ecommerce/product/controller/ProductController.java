@@ -1,4 +1,4 @@
-package com.ecommerce.product.controller;
+ package com.ecommerce.product.controller;
 
 import com.ecommerce.auction.service.AuctionService;
 import com.ecommerce.category.domain.Category;
