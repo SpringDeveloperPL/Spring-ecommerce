@@ -23,7 +23,7 @@
 						<p>${product.description}</p>
 					
 						<strong> Time to End: </strong> <span class="label label-primary"
-							style="font-size: 14px;">00:27:04 </span>
+							style="font-size: 14px;">${product.auctionEndDate} </span>
 						<p></p>
 						<p>
 							<strong> Bidders: </strong> ${product.price}  customer are bidding
