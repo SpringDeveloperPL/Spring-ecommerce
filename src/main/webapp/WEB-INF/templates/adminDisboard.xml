@@ -64,5 +64,21 @@
 					   value="/WEB-INF/templates/views/admin/system-settings/manufacturers/manufacturer.jsp" />
 	</definition>
 
+	<definition name="auction-manager" extends="adminDisboard">
+		<put-attribute name="title" value="Manage Manufacturers" />
+		<put-attribute name="customHeader"
+					   value="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/customHeader.jsp" />
+		<put-attribute name="content"
+					   value="/WEB-INF/templates/views/admin/auction-manager/contet.jsp" />
+	</definition>
+
+	<definition name="auction-detail" extends="adminDisboard">
+		<put-attribute name="title" value="Manage Manufacturers" />
+		<put-attribute name="customHeader"
+					   value="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/customHeader.jsp" />
+		<put-attribute name="content"
+					   value="/WEB-INF/templates/views/admin/auction-manager/auction-detail/contet.jsp" />
+	</definition>
+
 
 </tiles-definitions>

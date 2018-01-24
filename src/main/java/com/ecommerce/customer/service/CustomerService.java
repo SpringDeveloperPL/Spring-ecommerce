@@ -31,4 +31,6 @@ public interface CustomerService {
 	 */
 	public Customer getCustomerByEmail(String email);
 
+	public List<Customer> findAllCustomers();
+
 }

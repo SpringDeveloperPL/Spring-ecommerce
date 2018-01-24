@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -38,6 +41,7 @@ public class ProductAuctionController {
 
         String name = auth.getName();
         System.out.println(name);
+        Map<String,String> errorList = new HashMap<>();
 
         if(!name.equals("anonymousUser")) {
 
@@ -50,12 +54,18 @@ public class ProductAuctionController {
 
             auctionBidd.setBiddDate(auctionService.getBiddDate());
 
-            auctionService.productBidd(auctionBidd);
+            errorList =auctionService.productBidd(auctionBidd);
         }
+
+        else  errorList.put("Danger","Only registered users can participate in the auction");
         long countdownTimestamp = auctionService.getAuctionCountDownNanos(product.getAuctionEndDate());
         model.addAttribute("countdownTimestamp",countdownTimestamp);
         model.addAttribute("product",product);
         model.addAttribute("observerCount",auctionService.getCountProductAuctionObserver(product));
+
+        if(errorList.size()>0) {
+            model.addAttribute("errorList", errorList);
+        }
         return "product";
 
     }

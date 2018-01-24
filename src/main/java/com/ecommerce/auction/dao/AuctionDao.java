@@ -1,6 +1,7 @@
 package com.ecommerce.auction.dao;
 
 import com.ecommerce.auction.domain.AuctionBidd;
+import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.domain.AuctionObserver;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
@@ -37,4 +38,22 @@ public interface AuctionDao {
      * @return
      */
     List<AuctionObserver> findAllAuctionObservers();
+
+    /**
+     * Save Auction Message
+     * @param auctionMessage
+     */
+    void saveAuctionMessage(AuctionMessage auctionMessage);
+
+    /**
+     * Getting All auctions Messages sended to Customer
+     * @return
+     */
+    List<AuctionMessage> getAllAuctionMessages();
+
+    /**
+     * Getting all Auctions Bidds
+     * @return
+     */
+    List<AuctionBidd> getAllAuctionBidds();
 }

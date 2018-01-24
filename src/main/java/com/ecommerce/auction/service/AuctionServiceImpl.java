@@ -2,20 +2,23 @@ package com.ecommerce.auction.service;
 
 import com.ecommerce.auction.dao.AuctionDao;
 import com.ecommerce.auction.domain.AuctionBidd;
+import com.ecommerce.auction.domain.AuctionBiddHistoryElement;
+import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.domain.AuctionObserver;
 import com.ecommerce.customer.domain.Customer;
+import com.ecommerce.customer.service.CustomerService;
 import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.management.resources.agent;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.Collator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service("auctionService")
 public class AuctionServiceImpl implements  AuctionService {
@@ -25,6 +28,9 @@ public class AuctionServiceImpl implements  AuctionService {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    CustomerService customerService;
 
     @Override
     public Timestamp parseStringToTimestamp(String time) throws ParseException {
@@ -60,9 +66,9 @@ public class AuctionServiceImpl implements  AuctionService {
     }
 
     @Override
-    public void productBidd(AuctionBidd auctionBidd)
+    public Map<String,String> productBidd(AuctionBidd auctionBidd)
     {
-
+        Map<String,String>  errorList = new HashMap<>();
         //Check if auction is not closed
         if(auctionBidd.getAuctionItem().getOnAuction()) {
             //Registring observer auction if exist do not register
@@ -71,9 +77,17 @@ public class AuctionServiceImpl implements  AuctionService {
             if(result==-1) {
                 auctionDao.productBidd(auctionBidd);
                 auctionBidd.getAuctionItem().setBidAmout(auctionBidd.getBiddPrice());
+                //seting price = count bidders
+                //is literal in name
+                auctionBidd.setIsAuctionWinnet(true);
+                auctionBidd.getAuctionItem().setPrice(getCountProductAuctionObserver(auctionBidd.getAuctionItem()));
                 productService.updateProduct(auctionBidd.getAuctionItem());
-            }
+                notifyObserverAboutHigherOffer(auctionBidd);
+                errorList.put("Success","Your offer Wins");
+            }else
+                errorList.put("Warning","Your offer is too low");
         }
+        return errorList;
 
     }
 
@@ -129,7 +143,7 @@ public class AuctionServiceImpl implements  AuctionService {
         List<AuctionObserver> allAuctionObserver =findAllAuctionObservers();
 
         for (AuctionObserver observer : allAuctionObserver) {
-            if(observer.getAuctionItem().equals(product)) {
+            if(observer.getAuctionItem().getProductId()==product.getProductId()) {
                 auctionObservers.add(observer);
             }
         }
@@ -150,6 +164,132 @@ public class AuctionServiceImpl implements  AuctionService {
         }
         else return true;
     }
+
+    @Override
+    public void notifyObserverAboutHigherOffer(AuctionBidd auctionBidd) {
+        List<AuctionObserver> auctionObservers = getListProductAuctionObservers(auctionBidd.getAuctionItem());
+
+        for (AuctionObserver auctionObserver : auctionObservers) {
+            if(auctionBidd.getBidder().getCustomerId()!=auctionObserver.getObserver().getCustomerId()) {
+                AuctionMessage auctionMessage = new AuctionMessage();
+                auctionMessage.setSystemMessage("Your last offer has been outdone ");
+                auctionMessage.setCustomer(auctionObserver.getObserver());
+                auctionMessage.setProduct(auctionBidd.getAuctionItem());
+                auctionMessage.setDate(auctionBidd.getBiddDate());
+                sendAuctionMessage(auctionMessage);
+            }
+            else {
+                AuctionMessage messageForWinner = new AuctionMessage();
+                messageForWinner.setSystemMessage("Your offer Wins");
+                messageForWinner.setCustomer(auctionObserver.getObserver());
+                messageForWinner.setProduct(auctionBidd.getAuctionItem());
+                messageForWinner.setDate(auctionBidd.getBiddDate());
+                sendAuctionMessage(messageForWinner);
+            }
+
+        }
+    }
+
+    @Override
+    public void sendAuctionMessage(AuctionMessage auctionMessage) {
+        auctionDao.saveAuctionMessage(auctionMessage);
+
+    }
+
+    @Override
+    public List<AuctionMessage> getCustomerAuctionMessageList(Customer customer) {
+
+        List<AuctionMessage> allAuctionMessages = getAllAuctionMessages();
+        List<AuctionMessage> customerAuctionMessages = new ArrayList<>();
+
+        for (AuctionMessage auctionMessage : allAuctionMessages) {
+            if(customer.getCustomerId()==auctionMessage.getCustomer().getCustomerId())
+                customerAuctionMessages.add(auctionMessage);
+        }
+        return customerAuctionMessages;
+    }
+
+    @Override
+    public List<AuctionMessage> getAllAuctionMessages() {
+        return auctionDao.getAllAuctionMessages();
+    }
+
+    @Override
+    public Map<Product, AuctionMessage> getAuctionMessageAttachedCustomerProductAuction(Customer customer) {
+
+        Map<Product,AuctionMessage> result = new HashMap<>();
+
+        List<Product> allProductList = productService.findAllProducts();
+        List<AuctionMessage> allAuctionMessages = getAllAuctionMessages();
+
+        for (AuctionMessage auctionMessage : allAuctionMessages) {
+            if(auctionMessage.getCustomer().getCustomerId()==customer.getCustomerId()) {
+                for (Product product : allProductList) {
+                    if(auctionMessage.getProduct().getProductId()==product.getProductId()) {
+                        result.put(product,auctionMessage);
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<Product> getBiddedAuctions() {
+        List<Product> biddedAuctions = new ArrayList<>();
+        List<Product> allAuctions = productService.findAllProducts();
+        List<AuctionBidd> allAuctionBidd = getAllAuctionBidds();
+
+        for (AuctionBidd auctionBidd : allAuctionBidd) {
+            for (Product auction : allAuctions) {
+                if(auctionBidd.getAuctionItem().getProductId()==auction.getProductId()) {
+                    biddedAuctions.add(auction);
+                }
+            }
+        }
+        return biddedAuctions;
+    }
+
+    @Override
+    public List<AuctionBidd> getAllAuctionBidds() {
+        return auctionDao.getAllAuctionBidds();
+    }
+
+    @Override
+    public Map<AuctionBidd,Customer> getBiddsHistory(Product product) {
+
+        List<Customer> allCustomers = customerService.findAllCustomers();
+        List<AuctionBidd> allAuctionBidds= getAllAuctionBidds();
+
+        Map<AuctionBidd,Customer> result = new HashMap<>();
+
+        for (AuctionBidd auctionBidd : allAuctionBidds) {
+            if(auctionBidd.getAuctionItem().getProductId()==product.getProductId()) {
+
+                result.put(auctionBidd,auctionBidd.getBidder());
+            }
+        }
+        return result;
+    }
+
+    static <K,V extends Comparable<? super V>>
+    List<Entry<K, V>> entriesSortedByValues(Map<K,V> map) {
+
+        List<Entry<K,V>> sortedEntries = new ArrayList<Entry<K,V>>(map.entrySet());
+
+        Collections.sort(sortedEntries,
+                new Comparator<Entry<K,V>>() {
+                    @Override
+                    public int compare(Entry<K,V> e1, Entry<K,V> e2) {
+                        return e2.getValue().compareTo(e1.getValue());
+                    }
+                }
+        );
+
+        return sortedEntries;
+    }
+
 
 
 }

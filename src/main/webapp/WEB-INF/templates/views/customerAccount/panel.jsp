@@ -4,8 +4,9 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+uri="http://www.springframework.org/security/tags"%>
 
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <style>
 span .glyphicon {
@@ -30,6 +31,8 @@ span .glyphicon {
 	border-color: #eea236;
 	color: black;
 }
+
+}
 </style>
 
 
@@ -39,7 +42,7 @@ span .glyphicon {
 
 	<div class="container">
 		<div class="row customStyleRow"
-			style="background-color: #f0ad4e; color: #ffff;">
+			 style="background-color: #f0ad4e; color: #ffff;">
 			<div class="block-title">
 				<strong><span style="font-size: 20px;">Customer
 						Panel</span></strong>
@@ -57,35 +60,35 @@ span .glyphicon {
 			<div class="list-group">
 				<div class="tabs">
 					<a href="#accountDashboard" class="list-group-item active"> <span
-						class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						Account Dashboard
 					</a> <a href="#accountInformation" class="list-group-item"> <span
 						class="glyphicon glyphicon-info-sign
 					" aria-hidden="true"></span>Account
-						Information
-					</a> <a href="#adressBook" class="list-group-item"> <span
+					Information
+				</a> <a href="#adressBook" class="list-group-item"> <span
 						class="glyphicon glyphicon-book
-					
+
 					" aria-hidden="true"></span>
-						Adress Book
-					</a> <a href="#myBidding" class="list-group-item"> <span
+					Adress Book
+				</a> <a href="#myBidding" class="list-group-item"> <span
 						class="glyphicon glyphicon-shopping-cart
-					
+
 					"
 						aria-hidden="true"></span> My Bidding
-					</a> <a href="#transactions" class="list-group-item"> <span
+				</a> <a href="#transactions" class="list-group-item"> <span
 						class="glyphicon glyphicon-eur
-					
+
 					" aria-hidden="true"></span>
 
-						Transactions
-					</a> <a href="#transactions" class="list-group-item"> <span
+					Transactions
+				</a> <a href="#transactions" class="list-group-item"> <span
 						class="glyphicon glyphicon-envelope
-						
-					
+
+
 					"
 						aria-hidden="true"></span> Message Center <span class="badge">3</span>
-					</a>
+				</a>
 				</div>
 			</div>
 		</div>
@@ -126,7 +129,7 @@ span .glyphicon {
 				<div class="col-md-9 col-md">
 
 					<%@ include
-						file="/WEB-INF/templates/views/customerAccount/panelTabs/accountDashboard.jsp"%>
+					file="/WEB-INF/templates/views/customerAccount/panelTabs/accountDashboard.jsp"%>
 
 				</div>
 			</div>
@@ -137,7 +140,7 @@ span .glyphicon {
 				<div class="col-md-9 col-md">
 
 					<%@ include
-						file="/WEB-INF/templates/views/customerAccount/panelTabs/accountInformation.jsp"%>
+					file="/WEB-INF/templates/views/customerAccount/panelTabs/accountInformation.jsp"%>
 
 
 				</div>
@@ -148,36 +151,76 @@ span .glyphicon {
 
 
 					<%@ include
-						file="/WEB-INF/templates/views/customerAccount/panelTabs/adressBook.jsp"%>
+					file="/WEB-INF/templates/views/customerAccount/panelTabs/adressBook.jsp"%>
 				</div>
 			</div>
 			<div class="tab" id="myBidding">
-				<div class="col-md-8 col-md">
+				<diWv class="col-md-9 col-md">
 					<div class="block-title">
 						<h1>My Bidding</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Consequatur officia autem, repellendus mollitia ducimus maiores
-							voluptate quis tempora esse magnam, rerum sunt possimus repellat
-							itaque consequuntur facilis illo deserunt dignissimos!</p>
+
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Image</th>
+								<th>Product Name</th>
+								<th>Bidders</th>
+								<th>Date</th>
+								<th>Actual Price</th>
+								<th>Message</th>
+								<th>Link</th>
+							</tr>
+							</thead>
+								<tbody>
+									<style>
+									#hoverAuction  a:hover{
+									color:#f0ad4e;
+									font-weight:normal;
+									}</style>
+							<c:forEach var="entry" items="${auctionMessageMap}" varStatus="status">
+
+								<tr>
+									 Go to Auction </a>
+
+									<td><img src="/resources/productImages/${entry.key.imageName}" alt="image" width="100" height="100"> </td>
+									<td>${entry.key.name}</td>
+									<td>${entry.key.price} people</td>
+									<td>${entry.value.date}</td>
+									<td>${entry.key.bidAmout}</td>
+									<th>${entry.value.systemMessage}</th>
+									<th id="hoverAuction"><a href="<spring:url value="/category/product?id=${entry.key.productId}"/>">Auction Link</a></th>
+
+								</tr>
+
+							</c:forEach>
+
+							</tbody>
+
+						</table>
+
+
 					</div>
-				</div>
+				</diWv>
 
 			</div>
 			<div class="tab" id="transactions">
-				<div class="col-md-8 col-md">
+				<div class="col-md-9 col-md">
 					<div class="block-title">
-						<h1>Transactions</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Consequatur officia autem, repellendus mollitia ducimus maiores
-							voluptate quis tempora esse magnam, rerum sunt possimus repellat
-							itaque consequuntur facilis illo deserunt dignissimos!</p>
+						<h1>Message Center</h1>
+						<p>
+
 					</div>
+
+
+
+					</p>
 				</div>
 			</div>
-
 		</div>
 
 	</div>
+
+</div>
 </div>
 
 

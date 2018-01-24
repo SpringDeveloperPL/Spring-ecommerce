@@ -41,8 +41,8 @@
 							aria-expanded="true">General</a></li>
 						<li class=""><a href="#auction" data-toggle="tab"
 										aria-expanded="false">Auctions</a></li>
-						<li class=""><a href="#timeline" data-toggle="tab"
-							aria-expanded="false">Prices</a></li>
+						<!--<li class=""><a href="#timeline" data-toggle="tab"-->
+							<!--aria-expanded="false">Prices</a></li>-->
 						<li class=""><a href="#settings" data-toggle="tab"
 							aria-expanded="false">Images</a></li>
 
@@ -60,11 +60,11 @@
 
 						</div>
 						<!-- /.tab-pane -->
-						<div class="tab-pane" id="timeline">
-							<%@ include file="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/productTabContent/prices.jsp"%>
-
-						</div>
+						<!--<div class="tab-pane" id="timeline">-->
+							<!--<%@ include file="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/productTabContent/prices.jsp"%>-->
 						<!-- /.tab-pane -->
+						<!--</div>-->
+
 
 						<div class="tab-pane" id="settings">
 							<%@ include file="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/productTabContent/images.jsp"%>

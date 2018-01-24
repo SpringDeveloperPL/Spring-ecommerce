@@ -105,4 +105,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.getCustomerByEmail(email);
 	}
 
+	@Override
+	public List<Customer> findAllCustomers() {
+		return customerDao.findAllCustomers();
+	}
+
 }

@@ -1,3 +1,4 @@
+<!--
 
 <div class="form-group">
 	<label for="price" class="col-sm-2 control-label">Price</label>

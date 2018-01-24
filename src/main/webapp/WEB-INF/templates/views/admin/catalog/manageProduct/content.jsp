@@ -1,5 +1,7 @@
 
 <style>
+
+
 .switch {
 	position: relative !important;
 	display: inline-block !important;
@@ -100,7 +102,7 @@ input:checked+.okon:before {
 							<th>Image</th>
 							<th>Name</th>
 							<th>Quantity</th>
-							<th>Unit Price</th>
+							<th>Actual Price</th>
 							<th>Active</th>
 							<th>Edit</th>
 

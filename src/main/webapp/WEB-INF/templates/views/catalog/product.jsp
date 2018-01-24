@@ -79,9 +79,21 @@
 
 			<div class="row">
 				<form  method="POST"  action="">
+					<c:forEach var="entry" items="${errorList}" varStatus="status">
+
+					<!--Alerts-->
+					<div class="col-md-4 col-md">
+
+						<div class="alert alert-${entry.key}">
+							<strong>${entry.value}</strong>
+						</div>
+
+
+					</div>
+					</c:forEach>
 
 				<div class="col-md-7">
-				    <p> <strong>${observerCount} osób</strong> licytuje <strong></strong> </p>
+				    <p> <strong>${observerCount} person </strong> bid <strong></strong> </p>
 				
 					<h3>${product.name}</h3>
 
@@ -98,7 +110,7 @@
 						<strong>Unit in Stack </strong>:${product.quantity}
 					</p>
 					<p>
-						<strong>Actual Price </strong>:${product.bidAmout}
+						<strong>Actual Price </strong>:${product.bidAmout} &dollar;
 					</p>
 					<p>
 				</div>
@@ -109,11 +121,10 @@
 					<div class="col-md-2">
 						<div class="above">
 							<a
-								href="http://pomoc.allegro.pl/24521/24515/27693/jak-dziala-licytacja-w-allegro">Twoja
-								oferta</a>
+								href="http://pomoc.allegro.pl/24521/24515/27693/jak-dziala-licytacja-w-allegro">Your offer</a>
 						</div>
 
-						<input type="number" class="form-control amount" name="name" placeholder="Enter URL Key" />
+						<input type="number" class="form-control amount" name="name" placeholder="Your Price" />
 
 					</div>
 				</div>

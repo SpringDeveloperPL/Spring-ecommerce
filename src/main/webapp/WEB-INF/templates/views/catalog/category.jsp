@@ -26,10 +26,10 @@
 							style="font-size: 14px;">00:27:04 </span>
 						<p></p>
 						<p>
-							<strong> Bidders: </strong> 5 customer are bidding
+							<strong> Bidders: </strong> ${product.price}  customer are bidding
 						</p>
 						<p>
-							<strong>Price </strong> ${product.price}USD
+							<strong>Actual Price </strong> ${product.bidAmout}&dollar;
 						</p>
 						<p>
 							<strong>Unit in Stack </strong> ${product.quantity}

@@ -1,6 +1,7 @@
 package com.ecommerce.auction.dao;
 
 import com.ecommerce.auction.domain.AuctionBidd;
+import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.domain.AuctionObserver;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
@@ -45,6 +46,25 @@ public class AuctionDaoImpl implements AuctionDao {
     public List<AuctionObserver> findAllAuctionObservers() {
         Session session = getCurrentSesion();
         return session.createCriteria(AuctionObserver.class).list();
+    }
+
+    @Override
+    public void saveAuctionMessage(AuctionMessage auctionMessage) {
+        Session session = getCurrentSesion();
+        session.save(auctionMessage);
+    }
+
+
+    @Override
+    public List<AuctionMessage> getAllAuctionMessages() {
+        Session session = getCurrentSesion();
+        return session.createCriteria(AuctionMessage.class).list();
+    }
+
+    @Override
+    public List<AuctionBidd> getAllAuctionBidds() {
+        Session session =getCurrentSesion();
+        return session.createCriteria(AuctionBidd.class).list();
     }
 
 

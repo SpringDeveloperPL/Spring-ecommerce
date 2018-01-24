@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Transactional
 @Repository
@@ -67,6 +69,13 @@ public class CustomerDaoImpl implements CustomerDao {
 		criteria.add(Restrictions.eq("emailAdress",email));
 		Customer customer = (Customer) criteria.uniqueResult();
 		return customer;
+	}
+
+	@Override
+	public List<Customer> findAllCustomers() {
+		Session session = getCurrentSession();
+		return 	session.createCriteria(Customer.class).list();
+
 	}
 
 

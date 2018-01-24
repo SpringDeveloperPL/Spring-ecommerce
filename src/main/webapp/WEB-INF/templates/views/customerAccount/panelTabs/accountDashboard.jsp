@@ -55,7 +55,7 @@
 			</div>
 
 			<p>
-				Daniel Tester<br> mateusz123a@gmail.com<br> <a
+				${customer.userName}<br>${customer.emailAdress} <br> <a
 					href="http://wedson.pl/customer/account/edit/changepass/1/">Change
 					Password</a>
 			</p>
@@ -91,7 +91,8 @@
 
 		<div class="col-md-8">
 			<div class="box-tittle">
-				Your Bidds <a href="http://wedson.pl/customer/account/edit/">View
+				Your won auctions
+				<a href="http://wedson.pl/customer/account/edit/">View
 					More</a>
 			</div>
 			<table class="table table-hover">

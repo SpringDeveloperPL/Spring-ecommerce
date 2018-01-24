@@ -1,4 +1,12 @@
 
+<style>
+
+	#choseCategory {
+width:300px;
+height:300px;
+}
+</style>
+
 
 
 <div class="form-group">
@@ -6,7 +14,7 @@
 
 	<div class="col-sm-10">
 
-		<form:select multiple="true" path="chosedProductCategory">
+		<form:select multiple="true" path="chosedProductCategory" id="choseCategory">
 			<form:options items="${categoryList}" itemValue="categoryId" itemLabel="name" />
 		</form:select>
 
