@@ -58,7 +58,7 @@
 			<props>
 				<prop key="hibernate.dialect">${database.dialect}</prop>
 				<prop key="spring.jpa.hibernate.naming.physical-strategy">${spring.jpa.hibernate.naming.physical-strategy}</prop>
-				 <prop key="hibernate.hbm2ddl.auto">update</prop>
+				 <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
 				<prop key="hibernate.show_sql">true</prop>
 
 			</props>
@@ -101,6 +101,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
+
 
 </beans>

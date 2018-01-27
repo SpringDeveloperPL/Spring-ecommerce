@@ -157,4 +157,10 @@ public interface AuctionService {
      */
     public Map<AuctionBidd,Customer> getBiddsHistory(Product product);
 
+    /**
+     * Finding auction winner
+     * @param product
+     * @return
+     */
+    public AuctionBidd findAuctionWinner(Product product);
 }

@@ -273,7 +273,30 @@ public class AuctionServiceImpl implements  AuctionService {
         return result;
     }
 
+    @Override
+    public AuctionBidd findAuctionWinner(Product product) {
 
+        List<AuctionBidd> allAuctionsBidds = getAllAuctionBidds();
+        List<AuctionBidd> biddsForProduct = new ArrayList<>();
+        for (AuctionBidd bidd : allAuctionsBidds) {
+            if(bidd.getAuctionItem().getProductId()==product.getProductId()) {
+                biddsForProduct.add(bidd);
+            }
+        }
+
+        int result =0;
+        AuctionBidd winnerBidd = new AuctionBidd();
+        winnerBidd.setBiddPrice(new BigDecimal(0));
+        for (AuctionBidd productBid : biddsForProduct) {
+            result = productBid.getBiddPrice().compareTo(winnerBidd.getBiddPrice());
+            if(result==1) {
+                winnerBidd=productBid;
+            }
+        }
+
+
+        return winnerBidd;
+    }
 
 
 }
