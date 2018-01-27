@@ -50,6 +50,15 @@ public class ProductCategoryController {
 	}
 
 	@ResponseBody
+	@RequestMapping("json/allProducts")
+	public List<Product> getProductByCategoryJSON(Model model) {
+
+		List<Product> activeProductList = productService.getActiveProductList(productService.findAllProducts());
+
+		return activeProductList;
+	}
+
+	@ResponseBody
 	@RequestMapping("json/list")
 	public List<String> getListNamedCategoryJSON(Model model) {
 

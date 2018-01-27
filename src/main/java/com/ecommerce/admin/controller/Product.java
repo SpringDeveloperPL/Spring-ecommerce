@@ -2,32 +2,40 @@ package com.ecommerce.admin.controller;
 
 public class Product {
 
-    String productName;
-    String productDescription;
-    String actualPrice;
+    String name;
+    String description;
+    String bidAmout;
+    String ormid;
 
-
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getActualPrice() {
-        return actualPrice;
+    public String getBidAmout() {
+        return bidAmout;
     }
 
-    public void setActualPrice(String actualPrice) {
-        this.actualPrice = actualPrice;
+    public void setBidAmout(String bidAmout) {
+        this.bidAmout = bidAmout;
+    }
+
+    public String getOrmid() {
+        return ormid;
+    }
+
+    public void setOrmid(String ormid) {
+        this.ormid = ormid;
     }
 }
