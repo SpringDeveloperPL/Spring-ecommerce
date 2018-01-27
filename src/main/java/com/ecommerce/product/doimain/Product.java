@@ -76,7 +76,7 @@ public class Product implements Serializable {
 	
 	@Column(name="description", nullable=true, length=255)	
 	private String description;
-	
+	@JsonIgnore
 	@Column(name="longDescription", nullable=true)	
 	private String longDescription;
 	@JsonIgnore
