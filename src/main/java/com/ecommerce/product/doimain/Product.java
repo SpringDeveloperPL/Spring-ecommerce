@@ -30,46 +30,47 @@ public class Product implements Serializable {
 	
 	@Column(name="productId", nullable=false, length=11)	
 	@Id
+	@JsonIgnore
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@org.hibernate.annotations.GenericGenerator(name="COM_ECOMMERCE_PRODUCT_PRODUCTID_GENERATOR", strategy="identity")
 	private int productId;
-	
+	@JsonIgnore
 	@Column(name="defaultCategoryId", nullable=true, length=11)	
 	private Integer defaultCategoryId;
-	
+	@JsonIgnore
 	@Column(name="defaultColorId", nullable=true, length=10)	
 	private Integer defaultColorId;
-	
+	@JsonIgnore
 	@Column(name="on_sale", nullable=true, length=1)	
 	private Boolean on_sale;
-	
+	@JsonIgnore
 	@Column(name="quantity", nullable=true, length=11)	
 	private Integer quantity;
-	
+	@JsonIgnore
 	@Column(name="price", nullable=true, length=11)	
 	private Integer price;
-	
+	@JsonIgnore
 	@Column(name="wholesalePrice", nullable=true, length=11)	
 	private Integer wholesalePrice;
-	
+	@JsonIgnore
 	@Column(name="reductionPrice", nullable=true, length=11)	
 	private Integer reductionPrice;
-	
+	@JsonIgnore
 	@Column(name="weight", nullable=true, length=11)	
 	private Integer weight;
 	
 	@Column(name="name", nullable=true, length=255)	
 	private String name;
-	
+	@JsonIgnore
 	@Column(name="url", nullable=true, length=255)	
 	private String url;
-	
+	@JsonIgnore
 	@Column(name="activeStartDate", nullable=true)	
 	private java.sql.Timestamp activeStartDate;
-	
+	@JsonIgnore
 	@Column(name="activeEndDate", nullable=true)	
 	private java.sql.Timestamp activeEndDate;
-	
+	@JsonIgnore
 	@Column(name="sku", nullable=true, length=255)	
 	private String sku;
 	
@@ -78,11 +79,11 @@ public class Product implements Serializable {
 	
 	@Column(name="longDescription", nullable=true)	
 	private String longDescription;
-	
+	@JsonIgnore
 	@Column(name="active", nullable=true, length=1)	
 	private Boolean active;
-	
-	@Column(name="imageName", nullable=true, length=255)	
+	@JsonIgnore
+	@Column(name="imageName", nullable=true, length=255)
 	private String imageName;
 
 	@JsonIgnore
@@ -102,13 +103,13 @@ public class Product implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})	
 	@JoinColumns({ @JoinColumn(name="colorId", referencedColumnName="colorId") })	
 	private Color color;
-	
+	@JsonIgnore
 	@Column(name="onAuction", nullable=true, length=1)	
 	private Boolean onAuction;
-	
+	@JsonIgnore
 	@Column(name="auctionStartDate", nullable=true)	
 	private java.sql.Timestamp auctionStartDate;
-	
+	@JsonIgnore
 	@Column(name="auctionEndDate", nullable=true)	
 	private java.sql.Timestamp auctionEndDate;
 	
