@@ -2,6 +2,7 @@ package com.ecommerce.auction.service;
 
 import com.ecommerce.auction.domain.AuctionBidd;
 import com.ecommerce.auction.domain.AuctionMessage;
+import com.ecommerce.auction.service.AuctionService;
 import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,31 +25,24 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
     @Autowired
     ProductService productService;
 
-    private List<Product> allProducts;
+    int count;
 
-    public List<AuctionBidd> getAllAuctionsBidds() {
-        return allAuctionsBidds;
+
+    public List<AuctionBidd> getAllActiveAuctionsBidds() {
+        return allActiveAuctionsBidds;
     }
 
-    public void setAllAuctionsBidds(List<AuctionBidd> allAuctionsBidds) {
-        this.allAuctionsBidds = allAuctionsBidds;
+    public void setAllActiveAuctionsBidds(List<AuctionBidd> allActiveAuctionsBidds) {
+        this.allActiveAuctionsBidds = allActiveAuctionsBidds;
     }
 
-    private List<AuctionBidd> allAuctionsBidds;
+    private List<AuctionBidd> allActiveAuctionsBidds;
 
-    public List<Product> getAllProducts() {
-        return allProducts;
-    }
 
-    public void setAllProducts(List<Product> allProducts) {
-        this.allProducts = allProducts;
-    }
-
-//    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 1000)
     public void processAuctions() {
 
-        List<AuctionBidd> allBidds = getAllAuctionsBidds();
-        getAllAllAuctionsBidds();
+        List<AuctionBidd> allBidds = getAllActiveAuctionsBidds();
 
         for (AuctionBidd bidd : allBidds) {
             if(bidd.getAuctionItem().getAuctionEndDate().after(bidd.getAuctionItem().getAuctionStartDate())&&bidd.getAuctionItem().getActive()==false) {
@@ -56,7 +50,7 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
                 bidd.getAuctionItem().setOnAuction(false);
                 productService.updateProduct(bidd.getAuctionItem());
                 allBidds.remove(bidd);
-                setAllAuctionsBidds(allBidds);
+                setAllActiveAuctionsBidds(allBidds);
                 AuctionMessage auctionMessage = new AuctionMessage();
                 auctionMessage.setProduct(bidd.getAuctionItem());
                 auctionMessage.setCustomer(bidd.getBidder());
@@ -67,13 +61,11 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
         }
     }
 
-    public void getAllAuctionsAfterRunningService(){
 
-     setAllProducts(productService.findAllProducts());
-    }
-
-//    @PostConstruct
+    @PostConstruct
     public void  getAllAllAuctionsBidds(){
-        setAllAuctionsBidds(auctionService.getAllAuctionBidds());
+        setAllActiveAuctionsBidds(auctionService.getAllAuctionBidds());
+        count++;
+        System.out.println("Executed" + count);
     }
 }

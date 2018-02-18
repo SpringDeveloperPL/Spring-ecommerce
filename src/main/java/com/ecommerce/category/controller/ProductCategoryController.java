@@ -67,6 +67,7 @@ public class ProductCategoryController {
 		List<String> categoryNameList = new ArrayList<>();
 		for (Category category : categoryList) {
 			categoryNameList.add(category.getName());
+			
 		}
 
 		return categoryNameList;

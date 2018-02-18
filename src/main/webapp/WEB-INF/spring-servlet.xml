@@ -5,16 +5,16 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		 http://www.springframework.org/schema/context/spring-context.xsd
 
 
-		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- <mvc:interceptors> <bean class="com.ecommerce.interceptor.PerformenceMonitorInterceptor"></bean> 
+	<!-- <mvc:interceptors> <bean class="com.ecommerce.interceptor.PerformenceMonitorInterceptor"></bean>
 		</mvc:interceptors> -->
 	<mvc:annotation-driven enable-matrix-variables="true"
 		validator="validator" />
@@ -37,10 +37,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<mvc:default-servlet-handler />
-	
+
 	<!-- Static mvc Resorces -->
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
-	
+
 	<context:property-placeholder location="classpath:database.properties" />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -104,4 +104,9 @@
 
 
 
+	<!--Schediler Service bean-->
+
+	<bean id="auctionSchedulerService" class="com.ecommerce.auction.service.AuctionSchedulerSerivceImpl"></bean>
+
+	<bean id="applicationContextProvder" class="com.ecommerce.ContextProvider.ApplicationContextProvider"></bean>
 </beans>
