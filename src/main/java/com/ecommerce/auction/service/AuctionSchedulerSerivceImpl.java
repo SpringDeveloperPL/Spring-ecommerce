@@ -25,8 +25,6 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
     @Autowired
     ProductService productService;
 
-    int count;
-
 
     public List<AuctionBidd> getAllActiveAuctionsBidds() {
         return allActiveAuctionsBidds;
@@ -65,7 +63,5 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
     @PostConstruct
     public void  getAllAllAuctionsBidds(){
         setAllActiveAuctionsBidds(auctionService.getAllAuctionBidds());
-        count++;
-        System.out.println("Executed" + count);
     }
 }
