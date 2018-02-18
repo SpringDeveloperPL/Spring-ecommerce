@@ -32,6 +32,9 @@ public class AuctionServiceImpl implements  AuctionService {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    AuctionSchedulerService auctionSchedulerService;
+
     @Override
     public Timestamp parseStringToTimestamp(String time) throws ParseException {
 
@@ -79,6 +82,7 @@ public class AuctionServiceImpl implements  AuctionService {
                 auctionBidd.getAuctionItem().setBidAmout(auctionBidd.getBiddPrice());
                 //seting price = count bidders
                 //is literal in name
+                auctionSchedulerService.getAllActiveAuctionsBidds().add(auctionBidd);
                 auctionBidd.setIsAuctionWinnet(true);
                 auctionBidd.getAuctionItem().setPrice(getCountProductAuctionObserver(auctionBidd.getAuctionItem()));
                 productService.updateProduct(auctionBidd.getAuctionItem());
@@ -296,6 +300,39 @@ public class AuctionServiceImpl implements  AuctionService {
 
 
         return winnerBidd;
+    }
+
+    @Override
+    public List<AuctionBidd> getAllActiveAuctionBidds() {
+
+        List<AuctionBidd> auctionBiddList = getAllAuctionBidds();
+        List<AuctionBidd> resultList = new ArrayList<>();
+        for (AuctionBidd auctionBidd : auctionBiddList) {
+            if(auctionBidd.getAuctionItem().getActive()!=false) {
+                resultList.add(auctionBidd);
+            }
+        }
+        return resultList;
+    }
+
+    @Override
+    public void sendMessageToAuctionWinnerAndLoser(Customer winner,Product auction) {
+
+        List<AuctionObserver> auctionObserverList = getListProductAuctionObservers(auction);
+        AuctionMessage auctionMessage = new AuctionMessage();
+        auctionMessage.setProduct(auction);
+        auctionMessage.setSystemMessage("Auction Closed, You are Winner!");
+        auctionMessage.setCustomer(winner);
+        sendAuctionMessage(auctionMessage);
+
+        for (AuctionObserver auctionObserver : auctionObserverList) {
+            if(auctionObserver.getObserver().getCustomerId()!=winner.getCustomerId()) {
+                auctionMessage.setCustomer(auctionObserver.getObserver());
+                auctionMessage.setSystemMessage("Auction Closed, You are Loser");
+                sendAuctionMessage(auctionMessage);
+            }
+
+        }
     }
 
 

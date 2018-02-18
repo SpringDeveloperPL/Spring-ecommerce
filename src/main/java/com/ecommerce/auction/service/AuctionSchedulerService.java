@@ -4,6 +4,9 @@ import com.ecommerce.auction.domain.AuctionBidd;
 
 import java.util.List;
 
+/**
+ * Scheduler's task is to select the auction winners, when Auction Time out
+ */
 public interface AuctionSchedulerService {
 
     /**
@@ -12,7 +15,7 @@ public interface AuctionSchedulerService {
     public void  processAuctions();
 
     /**
-     * Getting all auctial auctions Bidds
+     * Getting all actual auctions Bidds
      * @return
      */
     public List<AuctionBidd> getAllActiveAuctionsBidds();

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -43,18 +44,17 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
         List<AuctionBidd> allBidds = getAllActiveAuctionsBidds();
 
         for (AuctionBidd bidd : allBidds) {
-            if(bidd.getAuctionItem().getAuctionEndDate().after(bidd.getAuctionItem().getAuctionStartDate())&&bidd.getAuctionItem().getActive()==false) {
+
+            if(bidd.getAuctionItem().getAuctionEndDate().before(auctionService.getAuctionStartDate())&&bidd.getAuctionItem().getActive()!=false) {
                 bidd.getAuctionItem().setActive(false);
                 bidd.getAuctionItem().setOnAuction(false);
                 productService.updateProduct(bidd.getAuctionItem());
-                allBidds.remove(bidd);
-                setAllActiveAuctionsBidds(allBidds);
                 AuctionMessage auctionMessage = new AuctionMessage();
                 auctionMessage.setProduct(bidd.getAuctionItem());
                 auctionMessage.setCustomer(bidd.getBidder());
-                auctionMessage.setSystemMessage("Auction was closed , You are Winner! ");
-                auctionService.sendAuctionMessage(auctionMessage);
-                System.out.println("Auction id = "+bidd.getAuctionBiddId_int()  +" Closed");
+                auctionService.sendMessageToAuctionWinnerAndLoser(bidd.getBidder(),bidd.getAuctionItem());
+                getAllActiveAuctionsBidds().remove(bidd);
+                System.out.println("Auction id = "+bidd.getAuctionItem().getProductId()  +" Closed");
             }
         }
     }
@@ -62,6 +62,6 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
 
     @PostConstruct
     public void  getAllAllAuctionsBidds(){
-        setAllActiveAuctionsBidds(auctionService.getAllAuctionBidds());
+        setAllActiveAuctionsBidds(auctionService.getAllActiveAuctionBidds());
     }
 }

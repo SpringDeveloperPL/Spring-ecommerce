@@ -163,4 +163,12 @@ public interface AuctionService {
      * @return
      */
     public AuctionBidd findAuctionWinner(Product product);
+
+    /**
+     * Getting All active Auctions Bidds
+     * @return
+     */
+    public List<AuctionBidd> getAllActiveAuctionBidds();
+
+    public void sendMessageToAuctionWinnerAndLoser(Customer winner,Product auction);
 }
