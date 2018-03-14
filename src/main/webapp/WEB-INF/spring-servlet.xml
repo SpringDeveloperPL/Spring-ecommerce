@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:wf="http://www.springframework.org/schema/webflow-config"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		 http://www.springframework.org/schema/context/spring-context.xsd
+		 http://www.springframework.org/schema/webflow-config
+		 http://www.springframework.org/schema/webfkiw-config/spring-webflow-config.xsd
 
 
 		http://www.springframework.org/schema/tx
@@ -58,7 +61,7 @@
 			<props>
 				<prop key="hibernate.dialect">${database.dialect}</prop>
 				<prop key="spring.jpa.hibernate.naming.physical-strategy">${spring.jpa.hibernate.naming.physical-strategy}</prop>
-				 <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+				 <prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 
 			</props>
@@ -109,4 +112,23 @@
 	<bean id="auctionSchedulerService" class="com.ecommerce.auction.service.AuctionSchedulerSerivceImpl"></bean>
 
 	<bean id="applicationContextProvder" class="com.ecommerce.ContextProvider.ApplicationContextProvider"></bean>
+	
+	
+	<!--WEBBFLOW CONFIGURATION-->
+	<!--Entry point for the flow-->
+
+	<!--<wf:flow-registry id="flowRegistry" base-path="/WEB-INF/templates/flows/">-->
+		<!--<wf:flow-location-pattern value="*-flow.xml" />-->
+	<!--</wf:flow-registry>-->
+	<!---->
+	<!--<wf:flow-executor id="flowExecutor" flow-registry="flowRegistry"/>-->
+
+	<!--<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">-->
+		<!--<property name="flowRegistry" ref="flowRegistry" />-->
+	<!--</bean>-->
+
+	<!--<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">-->
+		<!--<property name="flowExecutor" ref="flowExecutor" />-->
+	<!--</bean>-->
+
 </beans>
