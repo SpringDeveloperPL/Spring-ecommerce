@@ -1,5 +1,6 @@
 package com.ecommerce.promotion.dao;
 
+import com.ecommerce.promotion.domain.PromotionBox;
 import com.ecommerce.promotion.domain.SlideshowImage;
 
 import java.util.List;
@@ -36,4 +37,11 @@ public interface UploadFileDao {
      * @param image
      */
     void removeImage(SlideshowImage image);
+
+    /**
+     * Save or Upload Promotion Box
+     * @param promotionBox
+     */
+    public void saveOrUploadPromotionBox(PromotionBox promotionBox);
+
 }

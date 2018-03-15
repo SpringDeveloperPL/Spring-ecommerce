@@ -1,5 +1,6 @@
 package com.ecommerce.promotion.dao;
 
+import com.ecommerce.promotion.domain.PromotionBox;
 import com.ecommerce.promotion.domain.SlideshowImage;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -52,5 +53,10 @@ public class UploadFileDaoImpl implements UploadFileDao {
     public void removeImage(SlideshowImage image) {
         Session session = getCurrentSession();
         session.delete(image);
+    }
+
+    public void saveOrUploadPromotionBox(PromotionBox promotionBox) {
+        Session session = getCurrentSession();
+        session.saveOrUpdate(promotionBox);
     }
 }

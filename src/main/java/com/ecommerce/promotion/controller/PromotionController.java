@@ -3,18 +3,18 @@ package com.ecommerce.promotion.controller;
 
 import com.ecommerce.product.doimain.Manufacturer;
 import com.ecommerce.product.service.ProductService;
+import com.ecommerce.promotion.domain.PromotionBox;
+import com.ecommerce.promotion.domain.PromotionBoxForm;
 import com.ecommerce.promotion.domain.SlideshowForm;
 import com.ecommerce.promotion.domain.SlideshowImage;
 import com.ecommerce.promotion.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +75,28 @@ public class PromotionController {
             uploadFileService.removeImage(slideshowImage);
         }
         return "redirect:/dashboard/promotion/slideshow";
+    }
+
+    @RequestMapping(value = "/promotion-box",method = RequestMethod.GET)
+    public String managePromotionBox(Model model){
+
+        PromotionBoxForm promotionBoxForm = new PromotionBoxForm();
+        model.addAttribute("promotionBoxForm",promotionBoxForm);
+        return "promotion-box";
+    }
+
+    @RequestMapping(value = "/promotion-box",method = RequestMethod.POST)
+    public String savePromotionBox(Model model, @RequestAttribute PromotionBoxForm promotionBoxForm, HttpServletRequest request){
+
+        try {
+            uploadFileService.uploadAllPromotionBoxex(request,promotionBoxForm);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("promotionBoxForm",promotionBoxForm);
+        return "redirect:/dashboard/promotion/promotion-box";
+
     }
 }
 

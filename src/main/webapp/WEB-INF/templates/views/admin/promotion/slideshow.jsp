@@ -49,7 +49,7 @@
 
                 <br>
                 <div class="col-sm-2">
-            <sf:input type="file" path="file" id="file" class="form-control"/>
+                <sf:input type="file" path="file" id="file" class="form-control"/>
                 </div>
                 <div class="col-sm-2">
                <sf:input type="number" path="imageProperties.orderSequence" id="file" class="form-control" value="${image.orderSequence}"/>

@@ -88,5 +88,13 @@
 					   value="/WEB-INF/templates/views/admin/promotion/slideshow.jsp" />
 	</definition>
 
+	<definition name="promotion-box" extends="adminDisboard">
+		<put-attribute name="title" value="Manage Manufacturers" />
+		<put-attribute name="customHeader"
+					   value="/WEB-INF/templates/views/admin/catalog/manageProduct/addProduct/customHeader.jsp" />
+		<put-attribute name="content"
+					   value="/WEB-INF/templates/views/admin/promotion/box.jsp" />
+	</definition>
+
 
 </tiles-definitions>
