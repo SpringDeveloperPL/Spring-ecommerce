@@ -1,9 +1,7 @@
 package com.ecommerce.promotion.service;
 
 import com.ecommerce.promotion.dao.UploadFileDao;
-import com.ecommerce.promotion.domain.PromotionBoxForm;
-import com.ecommerce.promotion.domain.SlideshowForm;
-import com.ecommerce.promotion.domain.SlideshowImage;
+import com.ecommerce.promotion.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,9 +94,24 @@ public class UploadFileServiceImpl implements  UploadFileService{
     @Override
     public void uploadAllPromotionBoxex(HttpServletRequest request, PromotionBoxForm promotionBoxForm) {
         try {
-            uploadAnyFileIntoServer(request,promotionBoxForm.getBox1().getImageFile(),getUniqueFileName());
-            uploadAnyFileIntoServer(request,promotionBoxForm.getBox2().getImageFile(),getUniqueFileName());
-            uploadAnyFileIntoServer(request,promotionBoxForm.getBox3().getImageFile(),getUniqueFileName());
+            String box1_imageName ="1.jpg";
+            String box2_imageName ="2.jpg";
+            String box3_imageName ="3.jpg";
+
+            //Setting unique name for All Promotion BOxes
+            promotionBoxForm.getBox1().setImageName(box1_imageName);
+            promotionBoxForm.getBox2().setImageName(box2_imageName);
+            promotionBoxForm.getBox3().setImageName(box3_imageName);
+
+            //Uploading All Images for Boxe
+            if(!new Long(0).equals(promotionBoxForm.getBox1().getImageFile().getSize()))
+            uploadAnyFileIntoServer(request,promotionBoxForm.getBox1().getImageFile(),box1_imageName);
+            if(!new Long(0).equals(promotionBoxForm.getBox2().getImageFile().getSize()))
+            uploadAnyFileIntoServer(request,promotionBoxForm.getBox2().getImageFile(),box2_imageName);
+            if(!new Long(0).equals(promotionBoxForm.getBox3().getImageFile().getSize()))
+             uploadAnyFileIntoServer(request,promotionBoxForm.getBox3().getImageFile(),box3_imageName);
+
+            //Saving Boxes Prorerties heading/description/url. ect.
             uploadFileDao.saveOrUploadPromotionBox(promotionBoxForm.getBox1());
             uploadFileDao.saveOrUploadPromotionBox(promotionBoxForm.getBox2());
             uploadFileDao.saveOrUploadPromotionBox(promotionBoxForm.getBox3());
@@ -120,6 +133,15 @@ public class UploadFileServiceImpl implements  UploadFileService{
         return uniqueFileName;
     }
 
+    @Override
+    public List<PromotionBox> getListOfAllPromotionBoxesOrderedById() {
+        return uploadFileDao.getListOfAllPromotionBoxesOrderedById();
+    }
+
+    @Override
+    public List<LargeBox> getListOfAllLargeBoxesOrderedById() {
+        return uploadFileDao.getListOfAllLargeBoxesOrderedById();
+    }
 
 
 }

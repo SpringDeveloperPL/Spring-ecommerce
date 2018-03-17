@@ -1,5 +1,6 @@
 package com.ecommerce.promotion.dao;
 
+import com.ecommerce.promotion.domain.LargeBox;
 import com.ecommerce.promotion.domain.PromotionBox;
 import com.ecommerce.promotion.domain.SlideshowImage;
 import org.hibernate.Query;
@@ -59,4 +60,19 @@ public class UploadFileDaoImpl implements UploadFileDao {
         Session session = getCurrentSession();
         session.saveOrUpdate(promotionBox);
     }
+
+    @Override
+    public List<PromotionBox> getListOfAllPromotionBoxesOrderedById() {
+        Session session = getCurrentSession();
+        String hql = "FROM PromotionBox ORDER BY promotionBoxID asc";
+        Query query = session.createQuery(hql);
+        return query.list();
+    }
+
+    @Override
+    public List<LargeBox> getListOfAllLargeBoxesOrderedById() {
+        Session session = getCurrentSession();
+        String hql = "FROM LargeBox ORDER BY largeBoxID asc";
+        Query query = session.createQuery(hql);
+        return query.list();    }
 }

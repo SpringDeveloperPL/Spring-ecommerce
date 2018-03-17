@@ -1,9 +1,6 @@
 package com.ecommerce.promotion.service;
 
-import com.ecommerce.promotion.domain.PromotionBox;
-import com.ecommerce.promotion.domain.PromotionBoxForm;
-import com.ecommerce.promotion.domain.SlideshowForm;
-import com.ecommerce.promotion.domain.SlideshowImage;
+import com.ecommerce.promotion.domain.*;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -86,5 +83,21 @@ public interface UploadFileService {
      * @return
      */
     public String getUniqueFileName();
+
+    /**
+     * Getting Ordered List of All Promotion Boxes
+     * @return
+     */
+    public List<PromotionBox> getListOfAllPromotionBoxesOrderedById();
+
+
+    /**
+     * Getting Ordered List of All Promotion Boxes
+     * @return
+     */
+    public List<LargeBox> getListOfAllLargeBoxesOrderedById();
+
+
+
 
 }

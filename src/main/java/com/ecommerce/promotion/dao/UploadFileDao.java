@@ -1,5 +1,6 @@
 package com.ecommerce.promotion.dao;
 
+import com.ecommerce.promotion.domain.LargeBox;
 import com.ecommerce.promotion.domain.PromotionBox;
 import com.ecommerce.promotion.domain.SlideshowImage;
 
@@ -44,4 +45,15 @@ public interface UploadFileDao {
      */
     public void saveOrUploadPromotionBox(PromotionBox promotionBox);
 
+    /**
+     * Getting Ordered List of All Promotion Boxes
+     * @return
+     */
+    public List<PromotionBox> getListOfAllPromotionBoxesOrderedById();
+
+    /**
+     * Getting Ordered List of All Large Boxes
+     * @return
+     */
+    List<LargeBox> getListOfAllLargeBoxesOrderedById();
 }

@@ -10,22 +10,21 @@ import javax.persistence.*;
 public class PromotionBox {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long promotionBoxID;
 
     @Column
     private long uniqueBoxID;
 
-    @Column
+    @Column(name="imageName", nullable=true, length=255)
     private String imageName;
 
-    @Column
+    @Column(name="heading", nullable=true, length=255)
     private String heading;
 
-    @Column
+    @Column(name="description", nullable=true, length=255)
     private String description;
 
-    @Column
+    @Column(name="url", nullable=true, length=255)
     private String url;
 
     @Transient
@@ -37,6 +36,14 @@ public class PromotionBox {
 
     public void setPromotionBoxID(long promotionBoxID) {
         this.promotionBoxID = promotionBoxID;
+    }
+
+    public long getUniqueBoxID() {
+        return uniqueBoxID;
+    }
+
+    public void setUniqueBoxID(long uniqueBoxID) {
+        this.uniqueBoxID = uniqueBoxID;
     }
 
     public String getImageName() {
@@ -71,14 +78,6 @@ public class PromotionBox {
         this.url = url;
     }
 
-    public long getUniqueBoxID() {
-        return uniqueBoxID;
-    }
-
-    public void setUniqueBoxID(long uniqueBoxID) {
-        this.uniqueBoxID = uniqueBoxID;
-    }
-
     public MultipartFile getImageFile() {
         return imageFile;
     }
@@ -86,6 +85,4 @@ public class PromotionBox {
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
-
-
 }

@@ -25,26 +25,29 @@
 
         <sf:form class="form-horizontal" modelAttribute="promotionBoxForm" method="POST" enctype="multipart/form-data">
             <div class="col-lg-4">
-                <img class="img-circle" src="/resources/images/${box1.imageName}"  width="140" height="140">
+                <img class="img-circle" src="/resources/images/${imageName1}"  width="140" height="140">
                 <sf:input type="file" path="box1.imageFile" id="file" class="form-control"/>
 
                 <h2><sf:input type="text" path="box1.heading" id="heading" class="form-control" value="${box1.heading}" placeholder="Enter heading"/>
+                    <sf:input type="hidden" path="box1.promotionBoxID" id="promotionBoxID" class="form-control" value="1" placeholder="Enter heading"/>
                 </h2>
-                <sf:textarea path="box3.description" id="description" class="form-control" value="${box1.description}"  placeholder="Enter Short description" />
+                <sf:textarea path="box1.description" id="description" class="form-control" value="${box1.description}"  placeholder="Enter Short description" />
                 <h2><sf:input type="text" path="box1.url" id="url" class="form-control" value="${box1.url}" placeholder="Enter Url"/></h2>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <img class="img-circle" src="/resources/images/${box2.imageName}"  width="140" height="140">
+                <img class="img-circle" src="/resources/images/${imageName2}"  width="140" height="140">
                 <sf:input type="file" path="box2.imageFile" id="file" class="form-control"/>
+                <sf:input type="hidden" path="box2.promotionBoxID" id="promotionBoxID" class="form-control" value="2" placeholder="Enter heading"/>
 
                 <h2><sf:input type="text" path="box2.heading" id="heading" class="form-control" value="${box2.heading}" placeholder="Enter heading"/>
                 </h2>
-                <sf:textarea path="box3.description" id="description" class="form-control" value="${box2.description}"  placeholder="Enter Short description" />
+                <sf:textarea path="box2.description" id="description" class="form-control" value="${box2.description}"  placeholder="Enter Short description" />
                 <h2><sf:input type="text" path="box2.url" id="url" class="form-control" value="${box2.url}" placeholder="Enter Url"/></h2>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <img class="img-circle" src="/resources/images/${box2.imageName}"  width="140" height="140">
+                <img class="img-circle" src="/resources/images/${imageName3}"  width="140" height="140">
                 <sf:input type="file" path="box3.imageFile" id="file" class="form-control"/>
+                <sf:input type="hidden" path="box3.promotionBoxID" id="promotionBoxID" class="form-control" value="3" placeholder="Enter heading"/>
 
                 <h2><sf:input type="text" path="box3.heading" id="heading" class="form-control" value="${box3.heading}" placeholder="Enter heading"/>
                 </h2>
