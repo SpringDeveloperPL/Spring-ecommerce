@@ -76,6 +76,11 @@
           <ul class="treeview-menu">
             <li><a href="/dashboard/promotion/promotion-box">Promotion Box</a></li>
           </ul>
+
+
+          <ul class="treeview-menu">
+            <li><a href="/dashboard/promotion/large-box">Large Box</a></li>
+          </ul>
         </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>System Settings</span>

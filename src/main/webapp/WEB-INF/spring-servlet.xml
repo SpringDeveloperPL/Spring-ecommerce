@@ -45,37 +45,41 @@
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
 
 	<context:property-placeholder location="classpath:database.properties" />
+
+	<!--Pool connection to Database-->
+
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${database.driver}" />
-		<property name="url" value="${database.url}" />
-		<property name="username" value="${database.user}" />
-		<property name="password" value="${database.password}" />
+		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/ecommerce" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
 	</bean>
 
+	<!--Session Factory Initialize-->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="com.ecommerce" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${database.dialect}</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="spring.jpa.hibernate.naming.physical-strategy">${spring.jpa.hibernate.naming.physical-strategy}</prop>
-				 <prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 
 			</props>
 		</property>
 
 	</bean>
-
-
-	<tx:annotation-driven />
-
+	<!--Transaction Manager Support-->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
+
+	<tx:annotation-driven />
 
 	<!--APACHE TILES -->
 

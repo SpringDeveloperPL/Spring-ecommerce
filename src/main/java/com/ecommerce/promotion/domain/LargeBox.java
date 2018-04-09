@@ -23,7 +23,7 @@ public class LargeBox {
     private String description;
 
     @Transient
-    private MultipartFile file;
+    private MultipartFile imageFile;
 
 
     public Long getLargeBoxID() {
@@ -58,12 +58,11 @@ public class LargeBox {
         this.description = description;
     }
 
-    public MultipartFile getFile() {
-        return file;
+    public MultipartFile getImageFile() {
+        return imageFile;
     }
 
-    public void setFile(MultipartFile file) {
-        this.file = file;
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
     }
-
 }

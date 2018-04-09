@@ -67,6 +67,12 @@
 		<!--HIBERNATE DEPENDENCY -->
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
 
+		<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
