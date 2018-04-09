@@ -120,12 +120,39 @@ public class PromotionController {
 
         LargeBoxForm largeBoxForm = new LargeBoxForm();
         List<LargeBox> largeBoxList = uploadFileService.getListOfAllLargeBoxesOrderedById();
-        largeBoxForm.setBox1(largeBoxList.get(0));
-        largeBoxForm.setBox1(largeBoxList.get(1));
-        largeBoxForm.setBox1(largeBoxList.get(2));
 
-        model.addAttribute("promotionBoxForm", largeBoxForm);
-        return "promotion-box";
+        if(largeBoxList.size()==3) {
+            largeBoxForm.setBox1(largeBoxList.get(0));
+            largeBoxForm.setBox2(largeBoxList.get(1));
+            largeBoxForm.setBox3(largeBoxList.get(2));
+
+            String imageName1  = largeBoxForm.getBox1().getImageName();
+            String imageName2  = largeBoxForm.getBox2().getImageName();
+            String imageName3  = largeBoxForm.getBox3().getImageName();
+
+            model.addAttribute("imageName1",imageName1);
+            model.addAttribute("imageName2",imageName2);
+            model.addAttribute("imageName3",imageName3);
+
+
+        }
+        model.addAttribute("largeBoxForm", largeBoxForm);
+        return "large-box";
+    }
+
+
+    @RequestMapping(value = "/large-box", method = RequestMethod.POST)
+    public String saveLargeBox(Model model, @ModelAttribute LargeBoxForm largeBoxForm, HttpServletRequest request) {
+
+        try {
+            uploadFileService.uploadAllLargeBoxex(request, largeBoxForm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("largeBoxForm", largeBoxForm);
+        return "redirect:/dashboard/promotion/large-box";
+
     }
 
 }

@@ -28,11 +28,10 @@ public class HomeController {
 	@RequestMapping("/")
 	public String welcome(Model model) {
 
-		List<PromotionBox> promotionBoxList =uploadFileService.getListOfAllPromotionBoxesOrderedById();
-
 
 		model.addAttribute("imagesList",uploadFileService.getOrderedAllImages());
-		model.addAttribute("promotionBoxList",promotionBoxList);
+		model.addAttribute("promotionBoxList",uploadFileService.getListOfAllPromotionBoxesOrderedById());
+		model.addAttribute("largeBoxList",uploadFileService.getListOfAllLargeBoxesOrderedById());
 		return "welcome";
 	}
 

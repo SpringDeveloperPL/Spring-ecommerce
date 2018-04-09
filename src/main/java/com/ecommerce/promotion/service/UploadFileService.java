@@ -79,6 +79,14 @@ public interface UploadFileService {
     public void uploadAllPromotionBoxex(HttpServletRequest request, PromotionBoxForm promotionBoxForm);
 
     /**
+     *  Uploading All Large Boxes into server Directory
+     * @param request
+     * @param largeBoxForm
+     */
+    public void uploadAllLargeBoxex(HttpServletRequest request, LargeBoxForm largeBoxForm);
+
+
+    /**
      * Getting Unique file name
      * @return
      */

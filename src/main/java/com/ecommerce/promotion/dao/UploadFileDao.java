@@ -45,6 +45,13 @@ public interface UploadFileDao {
      */
     public void saveOrUploadPromotionBox(PromotionBox promotionBox);
 
+
+    /**
+     * Save or Upload Promotion Box
+     * @param largeBox
+     */
+    public void saveOrUploadLargeBox(LargeBox largeBox);
+
     /**
      * Getting Ordered List of All Promotion Boxes
      * @return

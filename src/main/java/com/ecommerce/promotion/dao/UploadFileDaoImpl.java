@@ -62,6 +62,12 @@ public class UploadFileDaoImpl implements UploadFileDao {
     }
 
     @Override
+    public void saveOrUploadLargeBox(LargeBox largeBox) {
+        Session session = getCurrentSession();
+        session.saveOrUpdate(largeBox);
+    }
+
+    @Override
     public List<PromotionBox> getListOfAllPromotionBoxesOrderedById() {
         Session session = getCurrentSession();
         String hql = "FROM PromotionBox ORDER BY promotionBoxID asc";

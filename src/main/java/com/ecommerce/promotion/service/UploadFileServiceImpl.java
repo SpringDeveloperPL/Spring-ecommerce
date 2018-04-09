@@ -124,6 +124,38 @@ public class UploadFileServiceImpl implements  UploadFileService{
     }
 
     @Override
+    public void uploadAllLargeBoxex(HttpServletRequest request, LargeBoxForm largeBoxForm) {
+        try {
+            String box1_imageName ="1_larg.jpg";
+            String box2_imageName ="2_larg.jpg";
+            String box3_imageName ="3_larg.jpg";
+
+            //Setting unique name for All Promotion BOxes
+            largeBoxForm.getBox1().setImageName(box1_imageName);
+            largeBoxForm.getBox2().setImageName(box2_imageName);
+            largeBoxForm.getBox3().setImageName(box3_imageName);
+
+            //Uploading All Images for Boxe
+            if(!new Long(0).equals(largeBoxForm.getBox1().getImageFile().getSize()))
+                uploadAnyFileIntoServer(request,largeBoxForm.getBox1().getImageFile(),box1_imageName);
+            if(!new Long(0).equals(largeBoxForm.getBox2().getImageFile().getSize()))
+                uploadAnyFileIntoServer(request,largeBoxForm.getBox2().getImageFile(),box2_imageName);
+            if(!new Long(0).equals(largeBoxForm.getBox3().getImageFile().getSize()))
+                uploadAnyFileIntoServer(request,largeBoxForm.getBox3().getImageFile(),box3_imageName);
+
+            //Saving Boxes Prorerties heading/description/url. ect.
+            uploadFileDao.saveOrUploadLargeBox(largeBoxForm.getBox1());
+            uploadFileDao.saveOrUploadLargeBox(largeBoxForm.getBox2());
+            uploadFileDao.saveOrUploadLargeBox(largeBoxForm.getBox3());
+
+        }catch (Exception ex)
+
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
     public String getUniqueFileName() {
 
         UUID uuid = UUID.randomUUID();
