@@ -10,30 +10,12 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/customer-account/**" access="hasAuthority('ROLE_CUSTOMER')" />
-		<!--<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" />-->
+		<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="permitAll" />
 		<logout logout-url="/logout" logout-success-url="/sign-in" />
 		<form-login login-page="/sign-in" />
 		<access-denied-handler error-page="/sign-in" />
 	</http>
-
-	<beans:bean id="daoAuthenticationProvider"
-		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
-		<beans:property name="userDetailsService" ref="userDetailsService"></beans:property>
-	</beans:bean>
-
-	<!-- <beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager"> 
-		<beans:property name="providers"> <beans:list> <beans:ref local="daoAuthenticationProvider" 
-		/> </beans:list> </beans:property> </beans:bean> -->
-
-	<beans:bean id="authenticationManager"
-		class="org.springframework.security.authentication.ProviderManager">
-		<beans:property name="providers">
-			<beans:list>
-				<beans:ref local="daoAuthenticationProvider" />
-			</beans:list>
-		</beans:property>
-	</beans:bean>
 
 	<authentication-manager>
 		<authentication-provider user-service-ref="userDetailsService">
@@ -42,9 +24,26 @@
 	</authentication-manager>
 
 	<beans:bean id="encoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 
+	<!--<beans:bean id="daoAuthenticationProvider"-->
+		<!--class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">-->
+		<!--<beans:property name="userDetailsService" ref="userDetailsService"></beans:property>-->
+	<!--</beans:bean>-->
+
+	<!-- <beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager"> 
+		<beans:property name="providers"> <beans:list> <beans:ref local="daoAuthenticationProvider" 
+		/> </beans:list> </beans:property> </beans:bean> -->
+
+	<!--<beans:bean id="authenticationManager"-->
+		<!--class="org.springframework.security.authentication.ProviderManager">-->
+		<!--<beans:property name="providers">-->
+			<!--<beans:list>-->
+				<!--<beans:ref local="daoAuthenticationProvider" />-->
+			<!--</beans:list>-->
+		<!--</beans:property>-->
+	<!--</beans:bean>-->
 
 </beans:beans>
 
