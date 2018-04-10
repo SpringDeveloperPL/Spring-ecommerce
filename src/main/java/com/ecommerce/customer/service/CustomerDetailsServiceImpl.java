@@ -22,25 +22,14 @@ public class CustomerDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	CustomerService customerService;
 
-	@SuppressWarnings("deprecation")
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		//getting customer from form 
-//		Customer customer = customerService.findCustomerByName(username);
-		Customer customer = null;
-		List<CustomerRole> customerRoleList= customerService.findAllCustomerRole();
-		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-		for (CustomerRole customerRole : customerRoleList) {
-			if(customerRole.getCustomer().getUserName().equals(username)) {
-				customer = customerRole.getCustomer();
-				authorities.add(new SimpleGrantedAuthority(customerRole.getRole().getRoleName()));
-
-			}
-		}
+		Collection<GrantedAuthority> authorities = customerService.getAllCustomerGrandAuthority(username);
+		Customer customer = customerService.findCustomerByName(username);
 
 		if (customer != null) {
-			//custmer password is encrypted
+
 			String password = customer.getPassword();
 			boolean enabled = true;
 			boolean accountNonExpired = true;
@@ -54,7 +43,6 @@ public class CustomerDetailsServiceImpl implements UserDetailsService {
 
 		} else
 			throw new UsernameNotFoundException("User not found");
-
 	}
 
 }

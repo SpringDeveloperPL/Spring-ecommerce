@@ -6,10 +6,14 @@ import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.domain.CustomerRole;
 import com.ecommerce.customer.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Transactional
@@ -110,4 +114,32 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.findAllCustomers();
 	}
 
+	@Override
+	public List<Role> getAllCustomerRole(String username) {
+
+		List<CustomerRole> customerRoleList = roleDao.findAllCustomerRole();
+		List<Role> roleList = new ArrayList<>();
+
+		for (CustomerRole customerRole : customerRoleList) {
+			if (customerRole.getCustomer().getUserName().equals(username)) {
+				roleList.add(customerRole.getRole());
+			}
+		}
+		return roleList;
+	}
+
+	@Override
+	public Collection<GrantedAuthority> getAllCustomerGrandAuthority(String username) {
+
+		Collection<GrantedAuthority> authorityCollection = new ArrayList<>();
+		List<Role> roleList = getAllCustomerRole(username);
+
+		if(roleList!=null) {
+			for (Role role : roleList) {
+				authorityCollection.add(new SimpleGrantedAuthority(role.getRoleName()));
+			}
+		}
+
+		return authorityCollection;
+	}
 }

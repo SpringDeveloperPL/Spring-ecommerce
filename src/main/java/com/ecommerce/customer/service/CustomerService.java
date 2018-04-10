@@ -2,7 +2,10 @@ package com.ecommerce.customer.service;
 
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.domain.CustomerRole;
+import com.ecommerce.customer.domain.Role;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface CustomerService {
@@ -32,5 +35,20 @@ public interface CustomerService {
 	public Customer getCustomerByEmail(String email);
 
 	public List<Customer> findAllCustomers();
+
+	/**
+	 * Getting list of all Customer Roles
+	 * @param username
+	 * @return
+	 */
+	public List<Role> getAllCustomerRole(String username);
+
+	/**
+	 * Getting list of All Customer Grand Authority
+	 * @param username
+	 * @return
+	 */
+	public Collection<GrantedAuthority> getAllCustomerGrandAuthority(String username);
+
 
 }
