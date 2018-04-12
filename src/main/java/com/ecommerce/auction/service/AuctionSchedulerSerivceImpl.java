@@ -55,6 +55,8 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
                 auctionService.sendMessageToAuctionWinnerAndLoser(bidd.getBidder(),bidd.getAuctionItem());
                 getAllActiveAuctionsBidds().remove(bidd);
                 System.out.println("Auction id = "+bidd.getAuctionItem().getProductId()  +" Closed");
+                System.out.println("okok");
+
             }
         }
     }
