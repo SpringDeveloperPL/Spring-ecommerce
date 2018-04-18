@@ -2,7 +2,10 @@ package com.ecommerce.auction.service;
 
 import com.ecommerce.auction.domain.AuctionBidd;
 import com.ecommerce.auction.domain.AuctionMessage;
-import com.ecommerce.auction.service.AuctionService;
+import com.ecommerce.cart.dao.PaymentDao;
+import com.ecommerce.cart.domain.Payment;
+import com.ecommerce.cart.service.PaymentService;
+import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -26,37 +28,51 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    PaymentService paymentService;
 
-    public List<AuctionBidd> getAllActiveAuctionsBidds() {
-        return allActiveAuctionsBidds;
+    @Autowired
+    PaymentDao paymentDao;
+
+
+    public List<Product> getListOfActiveAuctions() {
+        return listOfActiveAuctions;
     }
 
-    public void setAllActiveAuctionsBidds(List<AuctionBidd> allActiveAuctionsBidds) {
-        this.allActiveAuctionsBidds = allActiveAuctionsBidds;
+    public void setListOfActiveAuctions(List<Product> listOfActiveAuctions) {
+        this.listOfActiveAuctions = listOfActiveAuctions;
     }
 
-    private List<AuctionBidd> allActiveAuctionsBidds;
+    List<com.ecommerce.product.doimain.Product> listOfActiveAuctions;
 
 
     @Scheduled(fixedRate = 1000)
     public void processAuctions() {
 
-        List<AuctionBidd> allBidds = getAllActiveAuctionsBidds();
 
-        for (AuctionBidd bidd : allBidds) {
+        for (Product auction : listOfActiveAuctions) {
 
-            if(bidd.getAuctionItem().getAuctionEndDate().before(auctionService.getAuctionStartDate())&&bidd.getAuctionItem().getActive()!=false) {
-                bidd.getAuctionItem().setActive(false);
-                bidd.getAuctionItem().setOnAuction(false);
-                productService.updateProduct(bidd.getAuctionItem());
-                AuctionMessage auctionMessage = new AuctionMessage();
-                auctionMessage.setProduct(bidd.getAuctionItem());
-                auctionMessage.setCustomer(bidd.getBidder());
-                auctionService.sendMessageToAuctionWinnerAndLoser(bidd.getBidder(),bidd.getAuctionItem());
-                getAllActiveAuctionsBidds().remove(bidd);
-                System.out.println("Auction id = "+bidd.getAuctionItem().getProductId()  +" Closed");
-                System.out.println("okok");
+            try {
 
+                if (auction.getAuctionEndDate().before(auctionService.getAuctionStartDate()) && auction.getActive() != false) {
+                    auction.setActive(false);
+                    auction.setOnAuction(false);
+                    productService.updateProduct(auction);
+//                AuctionMessage auctionMessage = new AuctionMessage();
+//                auctionMessage.setProduct(auction);
+//                auctionMessage.setCustomer(bidd.getBidder());
+                    AuctionBidd windwrBidd = auctionService.findAuctionWinner(auction);
+
+                    //sending notify to observers
+                    auctionService.sendMessageToAuctionWinnerAndLoser(windwrBidd.getBidder(), auction);
+                    //Creating new Pending Payment
+                    paymentService.registerNewPendingPayment(auction, false, auctionService.getAuctionStartDate(), "Pending for Pay", windwrBidd.getBidder());
+                    getListOfActiveAuctions().remove(auction);
+                    System.out.println("Auction id = " + auction.getProductId() + " Closed");
+
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -64,6 +80,7 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
 
     @PostConstruct
     public void  getAllAllAuctionsBidds(){
-        setAllActiveAuctionsBidds(auctionService.getAllActiveAuctionBidds());
+        setListOfActiveAuctions(auctionService.getActiveAuctionsList());
     }
+
 }

@@ -21,7 +21,7 @@ public class AuctionManagerController {
     public String manageAuctions(Model model) {
 
         model.addAttribute("auctions",productService.getActiveProductList(productService.findAllProducts()));
-        return "auction-manager";
+        return "auction-manpager";
     }
 
     @RequestMapping("/dashboard/auction-manager/auction/{auctionID}")

@@ -11,7 +11,6 @@ import com.ecommerce.product.doimain.Product;
 import com.ecommerce.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.management.resources.agent;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -82,7 +81,6 @@ public class AuctionServiceImpl implements  AuctionService {
                 auctionBidd.getAuctionItem().setBidAmout(auctionBidd.getBiddPrice());
                 //seting price = count bidders
                 //is literal in name
-                auctionSchedulerService.getAllActiveAuctionsBidds().add(auctionBidd);
                 auctionBidd.setIsAuctionWinnet(true);
                 auctionBidd.getAuctionItem().setPrice(getCountProductAuctionObserver(auctionBidd.getAuctionItem()));
                 productService.updateProduct(auctionBidd.getAuctionItem());
@@ -333,6 +331,13 @@ public class AuctionServiceImpl implements  AuctionService {
             }
 
         }
+    }
+
+    @Override
+    public List<Product> getActiveAuctionsList() {
+        List<Product> listOfAllAuctions = productService.findAllProducts();
+        List<Product> activeAuctionsList = productService.getActiveProductList(listOfAllAuctions);
+        return activeAuctionsList;
     }
 
 
