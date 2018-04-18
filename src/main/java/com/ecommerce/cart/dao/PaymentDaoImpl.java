@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class PaymentDaoImpl implements PaymentDao {
@@ -21,5 +23,12 @@ public class PaymentDaoImpl implements PaymentDao {
     public void savePayment(Payment payment) {
         Session session = getCurrentSesion();
         session.save(payment);
+    }
+
+    @Override
+    public List<Payment> getAllPayments() {
+        Session session = getCurrentSesion();
+        return session.createCriteria(Payment.class).list();
+
     }
 }

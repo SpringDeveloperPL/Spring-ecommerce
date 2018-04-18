@@ -76,13 +76,13 @@ span .glyphicon {
 
 					"
 						aria-hidden="true"></span> My Bidding
-				</a> <a href="#transactions" class="list-group-item"> <span
+				</a> <a href="#payments" class="list-group-item"> <span
 						class="glyphicon glyphicon-eur
 
 					" aria-hidden="true"></span>
 
 					Transactions
-				</a> <a href="#transactions" class="list-group-item"> <span
+				</a> <a href="#payments" class="list-group-item"> <span
 						class="glyphicon glyphicon-envelope
 
 
@@ -203,12 +203,94 @@ span .glyphicon {
 				</diWv>
 
 			</div>
-			<div class="tab" id="transactions">
+			<div class="tab" id="payments">
 				<div class="col-md-9 col-md">
 					<div class="block-title">
-						<h1>Message Center</h1>
+						<h1>Pending Payments</h1>
 						<p>
 
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Transaction ID</th>
+								<th>Image</th>
+								<th>Product Name</th>
+								<th>Price</th>
+								<th>Payment Date</th>
+								<th>Message</th>
+								<th>Add To Card</th>
+							</tr>
+							</thead>
+							<tbody>
+							<style>
+									#hoverAuction  a:hover{
+									color:#f0ad4e;
+									font-weight:normal;
+									}</style>
+							<c:forEach var="payment" items="${pendingPayments}" varStatus="status">
+
+								<tr>
+									</a>
+									<td>${payment.paymentID}</td>
+									<td><img src="/resources/productImages/${payment.product.imageName}" alt="image" width="100" height="100"> </td>
+									<td>${payment.product.name}</td>
+									<td>${payment.product.bidAmout} $</td>
+									<td>${payment.paidDate}</td>
+									<td>${payment.message}</td>
+									<th id="hoverAuction"><a href="">Auction Link</a></th>
+
+								</tr>
+
+							</c:forEach>
+
+							</tbody>
+
+						</table>
+					</div>
+
+
+
+					<div class="block-title">
+						<h1>History Payments</h1>
+						<p>
+
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Transaction ID</th>
+								<th>Image</th>
+								<th>Product Name</th>
+								<th>Price</th>
+								<th>Payment Date</th>
+								<th>Message</th>
+								<th>Add To Card</th>
+							</tr>
+							</thead>
+							<tbody>
+							<style>
+									#hoverAuction  a:hover{
+									color:#f0ad4e;
+									font-weight:normal;
+									}</style>
+							<c:forEach var="succesPayment" items="${successfulPayments}" varStatus="status">
+
+								<tr>
+									</a>
+									<td>${succesPayment.paymentID}</td>
+									<td><img src="/resources/productImages/${succesPayment.product.imageName}" alt="image" width="100" height="100"> </td>
+									<td>${succesPayment.product.name}</td>
+									<td>${succesPayment.product.bidAmout} $</td>
+									<td>${succesPayment.paidDate}</td>
+									<td>${succesPayment.message}</td>
+									<th id="hoverAuction"><a href="">Auction Link</a></th>
+
+								</tr>
+
+							</c:forEach>
+
+							</tbody>
+
+						</table>
 					</div>
 
 

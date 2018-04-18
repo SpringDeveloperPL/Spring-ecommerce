@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -29,6 +31,50 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setMessage(message);
         payment.setCustomer(customer);
         paymentDao.savePayment(payment);
+    }
+
+    @Override
+    public List<Payment> getCustomerPayments(Customer customer) {
+        List<Payment> allPaymentList = getAllPayments();
+        List<Payment> customerPayments = new ArrayList<>();
+
+        for (Payment payment : allPaymentList) {
+            if(payment.getCustomer().getCustomerId()==customer.getCustomerId()) {
+                customerPayments.add(payment);
+            }
+        }
+        return customerPayments;
+    }
+
+    @Override
+    public List<Payment> getAllPayments() {
+        return paymentDao.getAllPayments();
+    }
+
+    @Override
+    public List<Payment> getCustomerPendingPayments(Customer customer) {
+        List<Payment> allPaymentList = getAllPayments();
+        List<Payment> customerPendingPayments = new ArrayList<>();
+
+        for (Payment payment : allPaymentList) {
+            if(payment.getCustomer().getCustomerId()==customer.getCustomerId()&&payment.isPaid()==false) {
+                customerPendingPayments.add(payment);
+            }
+        }
+        return customerPendingPayments;
+    }
+
+    @Override
+    public List<Payment> getcustomerSuccesfulPayments(Customer customer) {
+        List<Payment> allPaymentList = getAllPayments();
+        List<Payment> customerSuccesfulPayments = new ArrayList<>();
+
+        for (Payment payment : allPaymentList) {
+            if(payment.getCustomer().getCustomerId()==customer.getCustomerId()&&payment.isPaid()==true) {
+                customerSuccesfulPayments.add(payment);
+            }
+        }
+        return customerSuccesfulPayments;
     }
 
 }
