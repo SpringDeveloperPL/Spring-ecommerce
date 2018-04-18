@@ -15,10 +15,14 @@ package com.ecommerce.customer.domain; /**
 import com.ecommerce.auction.domain.AuctionBidd;
 import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.domain.AuctionObserver;
+import com.ecommerce.cart.domain.Payment;
+import com.ecommerce.cart.domain.Payment;
 import com.ecommerce.product.doimain.Product;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
+
 @Entity
 @org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="CUSTOMER")
@@ -96,7 +100,20 @@ public class Customer implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})	
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)	
 	private java.util.Set auctionMessage = new java.util.HashSet();
-	
+
+	@OneToMany(mappedBy="customer", targetEntity=com.ecommerce.cart.domain.Payment.class)
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
+	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
+	private java.util.Set payment = new java.util.HashSet();
+
+	public Set getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Set payment) {
+		this.payment = payment;
+	}
+
 	private void setCustomerId(int value) {
 		this.customerId = value;
 	}

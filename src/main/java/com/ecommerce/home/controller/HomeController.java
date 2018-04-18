@@ -16,24 +16,17 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-	@Autowired
-	ProductService productService;
 
 	@Autowired
 	UploadFileService uploadFileService;
 
-	@Autowired
-	AuctionSchedulerService auctionSchedulerService;
-	private static Logger logger= LoggerFactory.getLogger(HomeController.class);
 	@RequestMapping("/")
 	public String welcome(Model model) {
-
 
 		model.addAttribute("imagesList",uploadFileService.getOrderedAllImages());
 		model.addAttribute("promotionBoxList",uploadFileService.getListOfAllPromotionBoxesOrderedById());
 		model.addAttribute("largeBoxList",uploadFileService.getListOfAllLargeBoxesOrderedById());
 		return "welcome";
 	}
-
 
 }

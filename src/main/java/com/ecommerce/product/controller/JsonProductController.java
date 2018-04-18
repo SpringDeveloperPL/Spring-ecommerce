@@ -25,7 +25,8 @@ public class JsonProductController {
 	@ResponseBody
 	public List<Product> getAllPRoducts() {
 
-		return productService.findAllProducts();
+		List<Product> productList = productService.findAllProducts();
+		return productList;
 	}
 	@RequestMapping(value="/{id}/activation") 
 	@ResponseBody

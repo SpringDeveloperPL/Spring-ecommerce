@@ -1,4 +1,4 @@
-package com.ecommerce.cart.domain.domain;
+package com.ecommerce.cart.domain;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -69,7 +69,7 @@ public class Cart {
     }
 
     public void addCartItem(CartItem item) {
-        Integer productID = item.getProduct().getProductId();
+        Integer productID = item.getPayment().getProduct().getProductId();
 
         if(cartItems.containsKey(productID)) {
             CartItem existingCartItem = cartItems.get(productID);
@@ -83,7 +83,7 @@ public class Cart {
     }
 
     public void removeCartItem(CartItem item) {
-        Integer productID = item.getProduct().getProductId();
+        Integer productID = item.getPayment().getProduct().getProductId();
         cartItems.remove(productID);
         updateGrandTotal();
     }
