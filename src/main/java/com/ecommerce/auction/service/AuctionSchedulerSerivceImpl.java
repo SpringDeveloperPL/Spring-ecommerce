@@ -58,17 +58,12 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
                     auction.setActive(false);
                     auction.setOnAuction(false);
                     productService.updateProduct(auction);
-//                AuctionMessage auctionMessage = new AuctionMessage();
-//                auctionMessage.setProduct(auction);
-//                auctionMessage.setCustomer(bidd.getBidder());
                     AuctionBidd windwrBidd = auctionService.findAuctionWinner(auction);
-
                     //sending notify to observers
                     auctionService.sendMessageToAuctionWinnerAndLoser(windwrBidd.getBidder(), auction);
                     //Creating new Pending Payment
                     paymentService.registerNewPendingPayment(auction, false, auctionService.getAuctionStartDate(), "Pending for Pay", windwrBidd.getBidder());
                     getListOfActiveAuctions().remove(auction);
-                    System.out.println("Auction id = " + auction.getProductId() + " Closed");
 
                 }
             }catch (Exception e) {
@@ -79,7 +74,7 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
 
 
     @PostConstruct
-    public void  getAllAllAuctionsBidds(){
+    public void  getAllAuctionsBidds(){
         setListOfActiveAuctions(auctionService.getActiveAuctionsList());
     }
 
