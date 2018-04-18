@@ -84,7 +84,8 @@
 						},
 						columns : [
 								{
-									data : 'productId'
+									data : 'productId',
+									bSortable : false
 								},
 
 								{
