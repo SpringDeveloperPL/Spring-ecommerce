@@ -39,14 +39,17 @@ Language:
 					<li><a href="right-sidebar.html"><span>Right
 								Sidebar <span class="border"></span>
 						</span></a></li>
-					<li><a href="left-sidebar.html"><span>Left Sidebar
-								<span class="border"></span>
-						</span></a></li>
+
 
 						<sec:authorize access="hasRole('ROLE_CUSTOMER')">
 							<li><a href="/customer-account"><span> <span
 								class="glyphicon glyphicon-user"></span><sec:authentication property="name"/> <span
 								class="border"></span></span></a></li>
+
+							<li><a href="/cart"><span> <span
+									class="glyphicon glyphicon-shopping-cart"></span>Cart(0) <span
+									class="border"></span></span></a></li>
+
 					<li><a href="logout"><span> <span
 								class="glyphicon glyphicon-align-left"></span>
 								</button> Sign out <span class="border"></span></span></a></li>

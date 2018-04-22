@@ -127,7 +127,15 @@
 		<put-attribute name="title" value="Error 404 Page not Found" />
 
 		<put-attribute name="content"
-					   value="WEB-INF/templates/views/errors/error404.jsp" />
+					   value="/WEB-INF/templates/views/errors/error404.jsp" />
+	</definition>
+
+
+	<definition name="cart" extends="fullPageLayout">
+		<put-attribute name="title" value="Shopping Cart" />
+
+		<put-attribute name="content"
+					   value="/WEB-INF/templates/views/cart/cart.jsp" />
 	</definition>
 
 </tiles-definitions>

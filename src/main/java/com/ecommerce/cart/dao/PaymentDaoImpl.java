@@ -29,6 +29,18 @@ public class PaymentDaoImpl implements PaymentDao {
     public List<Payment> getAllPayments() {
         Session session = getCurrentSesion();
         return session.createCriteria(Payment.class).list();
+    }
 
+    @Override
+    public Payment getPaymentByID(int paymentID) {
+        Session session = getCurrentSesion();
+        return session.get(Payment.class,paymentID);
+
+    }
+
+    @Override
+    public void updatePayment(Payment payment) {
+        Session session = getCurrentSesion();
+        session.update(payment);
     }
 }

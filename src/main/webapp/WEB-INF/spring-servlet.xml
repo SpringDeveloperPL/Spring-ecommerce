@@ -107,7 +107,8 @@
 	<!--Schediler Service bean-->
 
 	<bean id="applicationContextProvder" class="com.ecommerce.ContextProvider.ApplicationContextProvider"></bean>
-	
 
+	<!--Customer Cart bean-->
+	<bean id="customerCart" class="com.ecommerce.cart.domain.Cart" scope="session"></bean>
 
 </beans>

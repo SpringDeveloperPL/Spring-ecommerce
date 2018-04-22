@@ -22,11 +22,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void registerNewPendingPayment(Product product, boolean isPaid, Timestamp paidDate, String message, Customer customer) {
+    public void registerNewPendingPayment(Product product, boolean isPaid,boolean onCart, Timestamp paidDate, String message, Customer customer) {
 
         Payment payment = new Payment();
         payment.setProduct(product);
         payment.setPaid(isPaid);
+        payment.setInCard(false);
         payment.setPaidDate(paidDate);
         payment.setMessage(message);
         payment.setCustomer(customer);
@@ -75,6 +76,17 @@ public class PaymentServiceImpl implements PaymentService {
             }
         }
         return customerSuccesfulPayments;
+    }
+
+    @Override
+    public Payment getPaymentByID(int paymentID) {
+
+        return paymentDao.getPaymentByID(paymentID);
+    }
+
+    @Override
+    public void updatePayment(Payment payment) {
+        paymentDao.updatePayment(payment);
     }
 
 }

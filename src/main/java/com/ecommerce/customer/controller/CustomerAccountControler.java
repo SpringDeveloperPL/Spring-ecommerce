@@ -2,7 +2,10 @@ package com.ecommerce.customer.controller;
 
 import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.service.AuctionService;
+import com.ecommerce.cart.domain.Cart;
+import com.ecommerce.cart.domain.CartDetail;
 import com.ecommerce.cart.domain.Payment;
+import com.ecommerce.cart.service.CartService;
 import com.ecommerce.cart.service.PaymentService;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.service.CustomerService;
@@ -15,12 +18,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class LoginCustomerController {
+public class CustomerAccountControler {
 
 	@Autowired
 	AuctionService auctionService;
@@ -33,6 +38,9 @@ public class LoginCustomerController {
 
 	@Autowired
 	PaymentService paymentService;
+
+	@Autowired
+	CartService cartService;
 
 	@RequestMapping("/customer-account")
 	public String customerLoginGetway(Model model) {
@@ -49,7 +57,9 @@ public class LoginCustomerController {
 			model.addAttribute("auctionMessageMap", auctionMessageMap);
 			model.addAttribute("pendingPayments",pendingPayments);
 			model.addAttribute("successfulPayments",successfulPayments);
-
+			Customer customer1 = customerService.getLoggedCustomer();
+			Cart cart = customer1.getCart();
+			System.out.println(cart.getCartID().toString());
 			return "customer-account";
 
 		} else  return "sign-in";
@@ -66,6 +76,19 @@ public class LoginCustomerController {
 	public String loginerror(Model model) {
 		model.addAttribute("error", "true");
 		return "sign-in";
+	}
+
+	@RequestMapping(value = "/customer-account",method = RequestMethod.POST,params = "addItem")
+	public void  addItemToCart(Model model, HttpServletRequest httpServletRequest,@RequestParam String addItem) {
+		cartService.addCartItem(Integer.parseInt(addItem));
+		customerLoginGetway(model);
+	}
+
+	@RequestMapping(value = "/customer-account",method = RequestMethod.POST,params = "removeItem")
+	public void  removeCartItem(Model model, HttpServletRequest httpServletRequest,@RequestParam String removeItem) {
+		int cartID =  cartService.getCartItemIDByPaymentID(Integer.parseInt(removeItem));
+		cartService.removeCartItem(cartID);
+		customerLoginGetway(model);
 	}
 
 	

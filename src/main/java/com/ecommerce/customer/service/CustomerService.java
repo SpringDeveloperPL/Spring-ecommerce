@@ -50,5 +50,11 @@ public interface CustomerService {
 	 */
 	public Collection<GrantedAuthority> getAllCustomerGrandAuthority(String username);
 
+	/**
+	 * Getting Logged Customer
+	 * @return
+	 */
+	public Customer getLoggedCustomer();
+
 
 }

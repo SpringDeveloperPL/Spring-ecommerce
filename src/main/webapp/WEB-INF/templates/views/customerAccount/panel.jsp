@@ -208,6 +208,7 @@ span .glyphicon {
 					<div class="block-title">
 						<h1>Pending Payments</h1>
 						<p>
+						<form action="" method="post" >
 
 						<table class="table table-hover">
 							<thead>
@@ -237,7 +238,25 @@ span .glyphicon {
 									<td>${payment.product.bidAmout} $</td>
 									<td>${payment.paidDate}</td>
 									<td>${payment.message}</td>
-									<th id="hoverAuction"><a href="">Auction Link</a></th>
+									<th id="hoverAuction">
+
+										<c:choose>
+											<c:when test="${payment.inCard==false}">
+												<button type="submit" class="btn btn-success" name="addItem" value="${payment.paymentID}">
+													<span class="glyphicon glyphicon-plus"></span> Add Item
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button type="submit" class="btn btn-danger" name="removeItem" value="${payment.paymentID}">
+													<span class="glyphicon glyphicon-remove"></span> Remove Item
+												</button>
+											</c:otherwise>
+										</c:choose>
+
+
+
+
+									</th>
 
 								</tr>
 
@@ -246,6 +265,7 @@ span .glyphicon {
 							</tbody>
 
 						</table>
+					</form>
 					</div>
 
 
@@ -278,10 +298,10 @@ span .glyphicon {
 									</a>
 									<td>${succesPayment.paymentID}</td>
 									<td><img src="/resources/productImages/${succesPayment.product.imageName}" alt="image" width="100" height="100"> </td>
-									<td>${succesPayment.product.name}</td>
-									<td>${succesPayment.product.bidAmout} $</td>
-									<td>${succesPayment.paidDate}</td>
-									<td>${succesPayment.message}</td>
+									<td>${payment.product.name}</td>
+									<td>${payment.product.bidAmout} $</td>
+									<td>${payment.paidDate}</td>
+									<td>${payment.message}</td>
 									<th id="hoverAuction"><a href="">Auction Link</a></th>
 
 								</tr>

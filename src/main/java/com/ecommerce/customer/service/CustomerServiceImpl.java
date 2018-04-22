@@ -1,13 +1,16 @@
 package com.ecommerce.customer.service;
 
+import com.ecommerce.cart.service.CartService;
 import com.ecommerce.customer.dao.CustomerDao;
 import com.ecommerce.customer.dao.RoleDao;
 import com.ecommerce.customer.domain.Customer;
 import com.ecommerce.customer.domain.CustomerRole;
 import com.ecommerce.customer.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,8 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerDao customerDao;
 	@Autowired
 	RoleDao roleDao;
+	@Autowired
+	CartService cartService;
 
 	@Override
 	public Customer createCustomer(Customer customer) {
@@ -72,6 +77,8 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setPassword(encoder.encode(password));
 		saveCustomer(customer, true);
 		createRegisteredCustomerRoles(customer);
+		//Creating Customer Cart
+		cartService.createCustomerCard(customer);
 
 	}
 
@@ -141,5 +148,13 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		return authorityCollection;
+	}
+
+	@Override
+	public Customer getLoggedCustomer() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String custoemrName = auth.getName();
+		Customer customer = findCustomerByName(custoemrName);
+		return customer;
 	}
 }

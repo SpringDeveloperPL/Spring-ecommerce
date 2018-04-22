@@ -1,29 +1,38 @@
 package com.ecommerce.cart.domain;
 
+import com.ecommerce.category.domain.ProductCategory;
+import com.ecommerce.customer.domain.Customer;
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+@Entity
+@Table(name = "CART")
+@Proxy(lazy = false)
 public class Cart {
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cartID;
-    private Map<Integer,CartItem> cartItems;
-    private BigDecimal grandTotal;
 
-    public Cart() {
-        cartItems =new HashMap<Integer,CartItem>();
-        grandTotal=new BigDecimal(0);
+    @ManyToOne(targetEntity=Customer.class, fetch=FetchType.LAZY)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+    @JoinColumns({ @JoinColumn(name="customerID", referencedColumnName="customerId", nullable=false) })
+    private Customer customer;
 
-    }
+    @Column
+    private BigDecimal totalShipping;
 
-    public Cart(Integer cartID) {
-        this();
-        this.cartID=cartID;
-    }
-
+    @Column
+    private BigDecimal totalPrice;
 
     public Integer getCartID() {
-
         return cartID;
     }
 
@@ -31,68 +40,54 @@ public class Cart {
         this.cartID = cartID;
     }
 
-    public Map<Integer, CartItem> getCartItems() {
-        return cartItems;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCartItems(Map<Integer, CartItem> cartItems) {
-        this.cartItems = cartItems;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public BigDecimal getGrandTotal() {
-        return grandTotal;
+    public BigDecimal getTotalShipping() {
+        return totalShipping;
     }
 
-    public void setGrandTotal(BigDecimal grandTotal) {
-        this.grandTotal = grandTotal;
+    public void setTotalShipping(BigDecimal totalShipping) {
+        this.totalShipping = totalShipping;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Cart cart = (Cart) o;
-
-        if (cartID != null ? !cartID.equals(cart.cartID) : cart.cartID != null) return false;
-        if (cartItems != null ? !cartItems.equals(cart.cartItems) : cart.cartItems != null) return false;
-        return grandTotal != null ? grandTotal.equals(cart.grandTotal) : cart.grandTotal == null;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    @Override
-    public int hashCode() {
-        int result = cartID != null ? cartID.hashCode() : 0;
-        result = 31 * result + (cartItems != null ? cartItems.hashCode() : 0);
-        result = 31 * result + (grandTotal != null ? grandTotal.hashCode() : 0);
-        return result;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public void addCartItem(CartItem item) {
-        Integer productID = item.getPayment().getProduct().getProductId();
-
-        if(cartItems.containsKey(productID)) {
-            CartItem existingCartItem = cartItems.get(productID);
-            existingCartItem.setQuentity(existingCartItem.getQuentity()+item.getQuentity());
-            cartItems.put(productID,existingCartItem);
-        }else {
-            cartItems.put(productID,item);
-        }
-
-        updateGrandTotal();
+    public boolean isEmpty() {
+        return isEmpty;
     }
 
-    public void removeCartItem(CartItem item) {
-        Integer productID = item.getPayment().getProduct().getProductId();
-        cartItems.remove(productID);
-        updateGrandTotal();
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
     }
 
-    public void updateGrandTotal() {
-        grandTotal = new BigDecimal(0);
-        for (CartItem cartItem : cartItems.values()) {
-            grandTotal = grandTotal.add(cartItem.getTotalPrice());
-        }
+    public Set getCartDetail() {
+        return cartDetail;
     }
+
+    public void setCartDetail(Set cartDetail) {
+        this.cartDetail = cartDetail;
+    }
+
+    @Column
+    private boolean isEmpty;
+
+    @OneToMany(mappedBy="cart", targetEntity=CartDetail.class)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
+    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
+    private java.util.Set cartDetail = new java.util.HashSet();
+
+
 
 }

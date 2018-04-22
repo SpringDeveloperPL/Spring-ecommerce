@@ -17,4 +17,17 @@ public interface PaymentDao {
      * @return
      */
     List<Payment> getAllPayments();
+
+    /**
+     * Getting Payment by ID DAO
+     * @param paymentID
+     * @return
+     */
+    Payment getPaymentByID(int paymentID);
+
+    /**
+     * Updating payment
+     * @param payment
+     */
+    void updatePayment(Payment payment);
 }

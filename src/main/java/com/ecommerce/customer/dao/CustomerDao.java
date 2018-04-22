@@ -23,4 +23,10 @@ public interface CustomerDao {
 	 * @return
 	 */
 	List<Customer> findAllCustomers();
+
+	/**
+	 * Update Customer
+	 * @param customer
+	 */
+	void updateCustomer(Customer customer);
 }

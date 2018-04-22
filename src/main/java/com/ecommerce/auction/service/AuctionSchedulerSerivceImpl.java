@@ -62,7 +62,7 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
                     //sending notify to observers
                     auctionService.sendMessageToAuctionWinnerAndLoser(winnerBidd.getBidder(), auction);
                     //Creating new Pending Payment
-                    paymentService.registerNewPendingPayment(auction, false, null, "Pending for Pay", winnerBidd.getBidder());
+                    paymentService.registerNewPendingPayment(auction, false, false,null, "Pending for Pay", winnerBidd.getBidder());
                     getListOfActiveAuctions().remove(auction);
 
                 }

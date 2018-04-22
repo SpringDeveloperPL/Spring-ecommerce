@@ -157,7 +157,7 @@ public class Product implements Serializable {
     @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
     @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
     private java.util.Set auctionMessage = new java.util.HashSet();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "product", targetEntity = com.ecommerce.cart.domain.Payment.class)
     @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
     @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)

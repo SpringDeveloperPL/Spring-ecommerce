@@ -15,6 +15,7 @@ package com.ecommerce.customer.domain; /**
 import com.ecommerce.auction.domain.AuctionBidd;
 import com.ecommerce.auction.domain.AuctionMessage;
 import com.ecommerce.auction.domain.AuctionObserver;
+import com.ecommerce.cart.domain.Cart;
 import com.ecommerce.cart.domain.Payment;
 import com.ecommerce.cart.domain.Payment;
 import com.ecommerce.product.doimain.Product;
@@ -105,6 +106,35 @@ public class Customer implements Serializable {
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.LOCK})
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
 	private java.util.Set payment = new java.util.HashSet();
+
+	@ManyToOne(targetEntity = Cart.class, fetch = FetchType.LAZY)
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.LOCK})
+	@JoinColumns({@JoinColumn(name = "cartID", referencedColumnName = "cartID")})
+	private Cart cart ;
+
+	public Boolean getRegistred() {
+		return isRegistred;
+	}
+
+	public void setRegistred(Boolean registred) {
+		isRegistred = registred;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	public Set getPayment() {
 		return payment;
