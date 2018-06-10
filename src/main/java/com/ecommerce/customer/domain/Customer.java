@@ -30,6 +30,9 @@ import java.util.Set;
 public class Customer implements Serializable {
 	public Customer() {
 	}
+	public Customer(int customerID) {
+		this.customerId = customerID;
+	}
 	
 	@Column(name="customerId", nullable=false, length=10)	
 	@Id

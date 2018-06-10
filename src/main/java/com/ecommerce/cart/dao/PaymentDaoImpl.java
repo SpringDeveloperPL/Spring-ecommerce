@@ -22,7 +22,7 @@ public class PaymentDaoImpl implements PaymentDao {
 
     public void savePayment(Payment payment) {
         Session session = getCurrentSesion();
-        session.save(payment);
+        session.saveOrUpdate(payment);
     }
 
     @Override

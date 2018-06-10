@@ -45,37 +45,39 @@ public class AuctionSchedulerSerivceImpl implements AuctionSchedulerService {
 
     List<com.ecommerce.product.doimain.Product> listOfActiveAuctions;
 
+    @PostConstruct
+    public void  getAllActiveAuctions(){
+        setListOfActiveAuctions(auctionService.getActiveAuctionsList());
+    }
 
     @Scheduled(fixedRate = 1000)
     public void processAuctions() {
 
+        getAllActiveAuctions();
 
-        for (Product auction : listOfActiveAuctions) {
+        if (listOfActiveAuctions.size()>0) {
+            for (Product auction : listOfActiveAuctions) {
 
-            try {
+                try {
 
-                if (auction.getAuctionEndDate().before(auctionService.getAuctionStartDate()) && auction.getActive() != false) {
-                    auction.setActive(false);
-                    auction.setOnAuction(false);
-                    productService.updateProduct(auction);
-                    AuctionBidd winnerBidd = auctionService.findAuctionWinner(auction);
-                    //sending notify to observers
-                    auctionService.sendMessageToAuctionWinnerAndLoser(winnerBidd.getBidder(), auction);
-                    //Creating new Pending Payment
-                    paymentService.registerNewPendingPayment(auction, false, false,null, "Pending for Pay", winnerBidd.getBidder());
-                    getListOfActiveAuctions().remove(auction);
+                    if (auction.getAuctionEndDate().before(auctionService.getAuctionStartDate()) && auction.getActive() != false) {
+                        auction.setActive(false);
+                        auction.setOnAuction(false);
+                        productService.updateProduct(auction);
+                        AuctionBidd winnerBidd = auctionService.findAuctionWinner(auction);
+                        //sending notify to observers
+                        auctionService.sendMessageToAuctionWinnerAndLoser(winnerBidd.getBidder(), auction);
+                        //Creating new Pending Payment
+                        paymentService.registerNewPendingPayment(auction, false, false, null, "Pending for Pay", winnerBidd.getBidder());
+                        getListOfActiveAuctions().remove(auction);
 
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
 
-
-    @PostConstruct
-    public void  getAllAuctionsBidds(){
-        setListOfActiveAuctions(auctionService.getActiveAuctionsList());
-    }
 
 }

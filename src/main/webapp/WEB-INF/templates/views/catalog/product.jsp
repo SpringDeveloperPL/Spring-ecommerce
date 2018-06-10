@@ -187,11 +187,7 @@
 
             function countdown() {
                 endMilesecends=endMilesecends-1000;
-
-
-
                 if(endMilesecends>0) {
-
 				div.setAttribute("data-toggle", "");
 
                     var secends = Math.floor(endMilesecends/1000);
@@ -211,7 +207,7 @@
                     document.getElementById("minutes").innerHTML  = minutes;
                     document.getElementById("secends").innerHTML  = secends;
                 }else {
-div.setAttribute("data-toggle", "modal");
+					div.setAttribute("data-toggle", "modal");
                 }
                 setTimeout(countdown,1000);
 

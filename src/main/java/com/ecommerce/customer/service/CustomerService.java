@@ -1,8 +1,6 @@
 package com.ecommerce.customer.service;
 
-import com.ecommerce.customer.domain.Customer;
-import com.ecommerce.customer.domain.CustomerRole;
-import com.ecommerce.customer.domain.Role;
+import com.ecommerce.customer.domain.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
@@ -56,5 +54,42 @@ public interface CustomerService {
 	 */
 	public Customer getLoggedCustomer();
 
+	/**
+	 * Checking if customer ented shipping adress
+	 * @param customer
+	 * @return
+	 */
+	public boolean isCustomerAdresEntered(Customer customer);
 
+	/**
+	 * Getting list of all customer adress
+	 * @return
+	 */
+	public List<CustomerAdress> getAllCustomerAdress();
+
+	/**
+	 * Gettign Customer Adress
+	 * @param
+	 * @return
+	 */
+	public Adress getAdress(Long adressID);
+
+	/**
+	 * Getting Customer Adress
+	 * @param customer
+	 * @return
+	 */
+	public Adress getCustomerAdress(Customer customer);
+
+	/**
+	 * Saving Adress
+	 * @param customerAdress
+	 */
+    public void saveAdress(Adress customerAdress);
+
+	/**
+	 * Saving Custoemr Adres
+	 * @param cs
+	 */
+	void saveCustomerAdres(CustomerAdress cs);
 }

@@ -34,6 +34,13 @@ public class AuctionServiceImpl implements  AuctionService {
     @Autowired
     AuctionSchedulerService auctionSchedulerService;
 
+    AuctionServiceImpl(AuctionDao auctionDao) {
+        this.auctionDao =auctionDao;
+    }
+    AuctionServiceImpl() {
+
+    }
+
     @Override
     public Timestamp parseStringToTimestamp(String time) throws ParseException {
 
@@ -79,8 +86,6 @@ public class AuctionServiceImpl implements  AuctionService {
             if(result==-1) {
                 auctionDao.productBidd(auctionBidd);
                 auctionBidd.getAuctionItem().setBidAmout(auctionBidd.getBiddPrice());
-                //seting price = count bidders
-                //is literal in name
                 auctionBidd.setIsAuctionWinnet(true);
                 auctionBidd.getAuctionItem().setPrice(getCountProductAuctionObserver(auctionBidd.getAuctionItem()));
                 productService.updateProduct(auctionBidd.getAuctionItem());

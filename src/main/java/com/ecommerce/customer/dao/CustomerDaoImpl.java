@@ -1,7 +1,10 @@
 package com.ecommerce.customer.dao;
 
 
+import com.ecommerce.category.domain.Category;
+import com.ecommerce.customer.domain.Adress;
 import com.ecommerce.customer.domain.Customer;
+import com.ecommerce.customer.domain.CustomerAdress;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,7 @@ import java.util.List;
 
 
 @Transactional
-@Repository
+@Repository("CustomerDaoImpl")
 public class CustomerDaoImpl implements CustomerDao {
 
 	@Autowired
@@ -82,6 +85,34 @@ public class CustomerDaoImpl implements CustomerDao {
 	public void updateCustomer(Customer customer) {
 		Session session = getCurrentSession();
 		session.update(customer);
+	}
+
+	@Override
+	public List<CustomerAdress> getAllCustomerAdress() {
+		Session session = getCurrentSession();
+		return session.createCriteria(CustomerAdress.class).list();
+	}
+
+	@Override
+	public Adress getAdress(Long adressID) {
+
+		Session session= getCurrentSession();
+		Criteria criteria = session.createCriteria(Adress.class);
+		criteria.add(Restrictions.eq("adressId",new Long(adressID)));
+		Adress adress = (Adress) criteria.uniqueResult();
+		return adress;
+	}
+
+	@Override
+	public void saveOrUpdateAdress(Adress customerAdress) {
+		Session session = getCurrentSession();
+		session.saveOrUpdate(customerAdress);
+	}
+
+	@Override
+	public void saveOrUpdateCustomerAdress(CustomerAdress customerAdress) {
+		Session session = getCurrentSession();
+		session.saveOrUpdate(customerAdress);
 	}
 
 

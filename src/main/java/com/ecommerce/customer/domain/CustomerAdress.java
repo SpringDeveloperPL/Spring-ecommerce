@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @org.hibernate.annotations.Proxy(lazy=true)
-@Table(name="CUSTOME_ADRESS")
+@Table(name="CUSTOMER_ADRESS")
 public class CustomerAdress implements Serializable {
 	public CustomerAdress() {
 	}

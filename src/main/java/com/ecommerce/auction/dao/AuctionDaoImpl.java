@@ -22,9 +22,14 @@ public class AuctionDaoImpl implements AuctionDao {
     @Autowired
     SessionFactory sessionFactory;
 
+    public AuctionDaoImpl(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
+    }
+
     public Session getCurrentSesion() {
         return sessionFactory.getCurrentSession();
     }
+
 
     public void productBidd(Product product, Customer customer, BigDecimal biddPrice, Timestamp biddDate) {
 

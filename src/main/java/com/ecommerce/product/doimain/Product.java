@@ -34,6 +34,10 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    public Product(int productID) {
+        this.productId = productID;
+    }
+
     @Column(name = "productId", nullable = false, length = 11)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -163,9 +167,7 @@ public class Product implements Serializable {
     @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
     private java.util.Set payment = new java.util.HashSet();
 
-    private void setProductId(int value) {
-        this.productId = value;
-    }
+
 
     public int getProductId() {
         return productId;
@@ -173,6 +175,10 @@ public class Product implements Serializable {
 
     public int getORMID() {
         return getProductId();
+    }
+
+    private void setProductId(int value) {
+        this.productId = value;
     }
 
     public void setDefaultCategoryId(int value) {

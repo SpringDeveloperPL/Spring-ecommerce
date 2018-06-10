@@ -16,15 +16,15 @@ package com.ecommerce.customer.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=true)
+@org.hibernate.annotations.Proxy(lazy=false)
 @Table(name="ADRESS")
 public class Adress implements Serializable {
 	public Adress() {
 	}
 	
 	@Column(name="adressId", nullable=false, length=19)	
-	@Id	
-	@GeneratedValue(generator="COM_ECOMMERCE_CUSTOMER_DOMAIN_ADRESS_ADRESSID_GENERATOR")	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@org.hibernate.annotations.GenericGenerator(name="COM_ECOMMERCE_CUSTOMER_DOMAIN_ADRESS_ADRESSID_GENERATOR", strategy="native")	
 	private long adressId;
 	
@@ -72,10 +72,7 @@ public class Adress implements Serializable {
 	@org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.EXTRA)	
 	private java.util.Set customerAdress = new java.util.HashSet();
 	
-	private void setAdressId(long value) {
-		this.adressId = value;
-	}
-	
+
 	public long getAdressId() {
 		return adressId;
 	}
@@ -212,5 +209,8 @@ public class Adress implements Serializable {
 	public String toString() {
 		return String.valueOf(getAdressId());
 	}
-	
+
+	public void setAdressId(long value) {
+		this.adressId = value;
+	}
 }

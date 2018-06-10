@@ -65,7 +65,7 @@ table tr th {
                                 </c:forEach>
 
                                 <tr>
-                                    <td colspan="4">&nbsp;</td>
+                                    <td colspan="4">&nbsp;</td>¡
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="text-right">Total Product</td>
@@ -95,7 +95,7 @@ table tr th {
 
 
                 <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>
-                <a href="#" class="btn btn-warning btn-large pull-right">Next<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="/adress-detail" class="btn btn-warning btn-large pull-right">Next<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
     </div>

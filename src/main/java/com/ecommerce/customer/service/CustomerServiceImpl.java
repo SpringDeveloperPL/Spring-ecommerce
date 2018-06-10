@@ -3,9 +3,7 @@ package com.ecommerce.customer.service;
 import com.ecommerce.cart.service.CartService;
 import com.ecommerce.customer.dao.CustomerDao;
 import com.ecommerce.customer.dao.RoleDao;
-import com.ecommerce.customer.domain.Customer;
-import com.ecommerce.customer.domain.CustomerRole;
-import com.ecommerce.customer.domain.Role;
+import com.ecommerce.customer.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,6 +27,10 @@ public class CustomerServiceImpl implements CustomerService {
 	RoleDao roleDao;
 	@Autowired
 	CartService cartService;
+
+	CustomerServiceImpl(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
 
 	@Override
 	public Customer createCustomer(Customer customer) {
@@ -72,10 +74,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void registerCustomer(Customer customer, String password, String passwordConfirm) {
-		// TODO Auto-generated method stub
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();	
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//cripting password
 		customer.setPassword(encoder.encode(password));
+		//saving Customer
 		saveCustomer(customer, true);
+		//register Customer Role
 		createRegisteredCustomerRoles(customer);
 		//Creating Customer Cart
 		cartService.createCustomerCard(customer);
@@ -156,5 +161,54 @@ public class CustomerServiceImpl implements CustomerService {
 		String custoemrName = auth.getName();
 		Customer customer = findCustomerByName(custoemrName);
 		return customer;
+	}
+
+	@Override
+	public boolean isCustomerAdresEntered(Customer customer) {
+
+		List<CustomerAdress> customerAdressesList = getAllCustomerAdress();
+		boolean isCustomerAdresEntered= false;
+		for (CustomerAdress customerAdress : customerAdressesList) {
+			if(customerAdress.getCustomer().getCustomerId()==customer.getCustomerId()){
+				isCustomerAdresEntered=true;
+			}else isCustomerAdresEntered = false;
+		}
+		return isCustomerAdresEntered;
+	}
+
+	@Override
+	public List<CustomerAdress> getAllCustomerAdress() {
+
+		return customerDao.getAllCustomerAdress();
+	}
+
+	@Override
+	public Adress getAdress(Long adressID) {
+		return customerDao.getAdress(adressID);
+	}
+
+	@Override
+	public Adress getCustomerAdress(Customer customer) {
+		List<CustomerAdress> customerAdressList = getAllCustomerAdress();
+		Adress adress= new Adress();
+		Long adressID = new Long(0);
+		for (CustomerAdress customerAdress : customerAdressList) {
+			if(customerAdress.getCustomer().getCustomerId()==customer.getCustomerId()){
+			adressID = customerAdress.getAdress().getAdressId();
+			adress.setAdressId(adressID);
+			}
+		}
+		adress = getAdress(adressID);
+		return adress;
+	}
+
+	@Override
+	public void saveAdress(Adress customerAdress) {
+		customerDao.saveOrUpdateAdress(customerAdress);
+	}
+
+	@Override
+	public void saveCustomerAdres(CustomerAdress cs) {
+		customerDao.saveOrUpdateCustomerAdress(cs);
 	}
 }

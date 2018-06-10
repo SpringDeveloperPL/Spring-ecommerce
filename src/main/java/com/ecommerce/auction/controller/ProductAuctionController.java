@@ -40,7 +40,6 @@ public class ProductAuctionController {
         Product product = productService.getProductById(Integer.parseInt(productId));
 
         String name = auth.getName();
-        System.out.println(name);
         Map<String,String> errorList = new HashMap<>();
 
         if(!name.equals("anonymousUser")) {

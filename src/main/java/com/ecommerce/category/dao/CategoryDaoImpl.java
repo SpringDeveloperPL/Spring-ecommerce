@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Repository("CategoryDaoImpl")
 @Transactional
 public class CategoryDaoImpl implements CategoryDao {
 

@@ -18,5 +18,5 @@ public interface AuctionSchedulerService {
      * Getting all actual auctions
      * @return
      */
-    public void getAllAuctionsBidds();
+    public void getAllActiveAuctions();
 }

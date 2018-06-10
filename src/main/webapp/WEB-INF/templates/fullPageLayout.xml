@@ -138,4 +138,11 @@
 					   value="/WEB-INF/templates/views/cart/cart.jsp" />
 	</definition>
 
+	<definition name="customerAdresCart" extends="fullPageLayout">
+		<put-attribute name="title" value="Shopping Cart" />
+
+		<put-attribute name="content"
+					   value="/WEB-INF/templates/views/cart/customerAdresCart.jsp" />
+	</definition>
+
 </tiles-definitions>

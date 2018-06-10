@@ -8,6 +8,8 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/customer-account/**" access="hasRole('ROLE_CUSTOMER')" />
+		<intercept-url pattern="/cart/**" access="hasRole('ROLE_CUSTOMER')" />
+		<intercept-url pattern="/adress-detail/**" access="hasRole('ROLE_CUSTOMER')" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="permitAll" />
 		<logout logout-url="/logout" logout-success-url="/sign-in" />
